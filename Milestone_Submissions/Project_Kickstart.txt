@@ -1,0 +1,34 @@
+Team Number - 17-02       Team name - Aces
+
+                        Team Members
+
+Names	                Git Hub Usernames	    Emails
+Ashley Kastler     	    AshleyK18-marcey	    Ashley.kastler@colorado.edu
+William Van Vuuren  	willvanvuuren	        wiva8249@colorado.edu
+Elizabeth Sorenson	    elso1549	            Elizabeth.sorenson@colorado.edu
+Daniel Hernandez	    champion-dan	        dahe5985@colorado.edu
+Jose Soto	            jossotriv	            joso8155@colorado.edu
+
+Application name – 
+Card Crusade
+
+Application Description – 
+Our application will be a card game similar to the traditional card game war except we’re providing a digital upgraded version. 
+The interface would allow gamers to register an account they can log in with to keep track of their stats as they compete. 
+
+Vision Statement – 
+For card enthusiasts, Who want to experience an online card game and keep track of their wins. 
+Card crusade is an interactive game that’s an easy digital access to an entertaining take on the traditional card game war. 
+Unlike physical playing cards, our product allows for quick access to entertainment at their fingertips and allows the user to keep track of their stats as they compete. 
+
+
+Git Hub Repository - https://github.com/willvanvuuren/card-crusade
+
+Communication Plan – 
+Our team is planning to communicate over text message and an email group. 
+The text message group will be for quick communication between group members and the email group will include Swaminathan, our TA. 
+
+Meeting Plan – 
+Team meeting: TBD, Our teammate Jose is absent so we will discuss over text when to meet next before the next lab 
+Weekly meeting with TA: Saturday November 5th, 11:00am, Online 
+
