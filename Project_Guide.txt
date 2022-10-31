@@ -1,0 +1,20 @@
+Your application MUST have the following features:
+
+    A login page
+    A registration page
+    A home page
+    A server that allows the UI to communicate with the database
+    A database that stores user information
+    Passwords must be hashed and stored in the database
+    Session Management - The user must be able to log in and out of the application and the session must be maintained
+    Application is built within Docker containers - you can find some updates to the docker-compose.yaml in the write-up below.
+
+Some recommended features:
+
+    A UI that allows the user to interact with the application - this can comprise of multiple pages
+        These would be specific to the application you are building
+    A profile page (where the user can see their information - optional)
+    A superuser/admin account that can manage users (optional)
+    A database that stores user data (optional)
+        The purpose would be to store user's activity to be recovered when the user logs back in
+    A database that stores data from an API (optional) - if you are requesting a repeat data from the API with every call, you could cache some data in your database.

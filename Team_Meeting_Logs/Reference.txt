@@ -1,0 +1,25 @@
+The minutes of the meeting with your TA every week will be recorded in a file here. 
+You will be updating the same file every week with the latest updates.
+ Points to include in the minutes would be:
+    Decisions made
+    Alternative actions/options discussed
+    Follow-up items, including agreed-on roles and responsibilities
+
+Before coming to the meeting, you should have the following in your GitHub repository:
+
+    Consistent commits during the week
+        You should be committing your code your feature branch of your repository at least once a day.
+        The commit messages should be descriptive of the changes introduced. This resource should be helpful.
+        Your commits should be meaningful - Refer to this resource for more information.
+    Update your GitHub repository with the latest code.
+        Every team member should have pushed their code to the remote branch of the repository
+        The code should be merged into the main branch of the repository and tested before presenting it to your TA.
+        The features should be fully functional.
+            The scope of the features can be determined by the team.
+    Update the status of user stories on the GitHub project board.
+    Release notes: A list of updates you have made since the last meeting. This should be in the Milestone Submissions folder.
+
+Plan for the following week:
+
+    What are the features you are planning to implement?
+    To make it manageable, you can create an issue with a checklist on the GitHub project board. Here is how you can do that. The checklist should link to the user stories(tracked in GitHub issues) that you intend to work on.
