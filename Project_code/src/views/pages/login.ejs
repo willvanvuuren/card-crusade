@@ -1,0 +1,42 @@
+<%- include ('../partials/header') %> <%- include ('../partials/navbarlogin') %>
+
+<main>
+    <div class="row align-items-center">
+        <div class="col-lg" style="margin-left: 50px">
+            <img src="http://www.ambassadorgames.com/media/catalog/product/cache/1/image/1200x1200/9df78eab33525d08d6e5fb8d27136e95/s/t/st040.jpg" width="800px"/>
+        </div>
+        <div class="col-lg" style="padding-right: 100px">
+            <% if (locals.message) { %>
+                <div
+                  class="alert alert-<%- locals.error ? 'danger' : 'success' %>"
+                  role="alert"
+                >
+                  <%= message %>
+                </div>
+            <% } %>
+            <div class="container">
+                <h1>
+                    Login to your account
+                </h1>
+            </br>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" aria-describedby="username" name="username">
+                </div>
+                <div class="form-group ">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                    </small>
+                </div>
+                <p class="float-left">Don't have an account? <a href="/register" style="margin-left: 5px">Register</a></p>
+                <button type="submit" class="btn btn-danger float-right">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+<%- include ('../partials/footer') %>
