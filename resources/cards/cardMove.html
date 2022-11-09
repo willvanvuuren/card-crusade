@@ -66,7 +66,8 @@ body {
 <body>
 
 <h1>Card Animation Testing</h1>
-<button id="button" onclick="duplicate()">Click me</button>
+<button id="button" onclick="duplicate()">Continue Game (Duplicate atm)</button>
+<button id="button" onclick="hover()">Continue Game (Duplicate atm)</button>
 <div id="duplicater"> 
     
 
@@ -88,18 +89,28 @@ body {
 	var original = document.getElementById('duplicater');
 
 function duplicate() {
-    var clone = original.cloneNode(true); // "deep" clone
+    var clone = original.cloneNode(true); 
+
     clone.id = "duplicater" + ++i;
-    
-    // or clone.id = ""; if the divs don't need an ID
     original.parentNode.appendChild(clone);
     
     
-    document.getElementById("cardTitle").innerText =i;
-    
+    document.getElementById('cardTitle').innerText =i;
 
 }
 
+function hover(){
+	let start = Date.now();
+	let timer = setInterval(function(){
+		let timePassed = Date.now() -start;
+		document.getElementById('duplicater').style.position = 'relative';
+		document.getElementById('duplicater').style.left = timePassed/5 +'px';
+		document.getElementById('duplicater').style.top = timePassed/5 +'px';
+		if (timePassed>1000){
+			clearInterval(timer);
+		}
+	},20);
+}
 
 
 
