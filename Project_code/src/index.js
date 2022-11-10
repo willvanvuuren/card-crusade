@@ -55,3 +55,9 @@ const dbConfig = {
       app.get('/profile', (req, res) =>{
         res.render("pages/profile"); 
       });
+
+//get function to render logout page      
+app.get("/logout", (req, res)=> {
+  req.session.destroy
+  res.render("pages/logout");
+});
