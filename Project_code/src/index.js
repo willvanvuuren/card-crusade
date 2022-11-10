@@ -48,6 +48,17 @@ app.use(
   })
 );
 
+// TODO add icon (needs to be in database)
+const user = {
+  user_id: undefined,
+  username: undefined,
+  email: undefined,
+  password: undefined,
+  wins: undefined,
+  losses: undefined,
+};
+
+
 app.get('/login', (req,res) => {
   res.render("pages/login");
 });
@@ -113,6 +124,33 @@ app.get('/', (req,res) => {
 app.listen(3000);
 console.log('Server is listening on port 3000');
 
-app.get('/profile', (req, res) =>{
-  res.render("pages/profile"); 
-});
+app.get('/profile', async(req, res) =>{
+  username = "Geri"; //need to read this in during login
+  const query = "SELECT * FROM users ORDER BY wins DESC"; 
+  
+  db.any(query, [])
+    .then(async (data) => {
+      //console.log(data[0].username); //works
+    res.render("pages/profile",{
+      data,
+      username,  
+    });    
+    })
+
+
+    .catch((error) => {
+      res.render("pages/profile", {
+        error: true,
+        message: 'Error'
+      })
+
+      console.log("error");
+      });
+    
+
+    
+
+
+
+  });
+

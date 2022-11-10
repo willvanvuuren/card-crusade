@@ -1,12 +1,21 @@
 
 <!-- include header and menu/navbar -->
+<%- include ('../partials/header') %> <%- include ('../partials/navbarlogin') %>
+
 
 <main>
   <!-- including bootstrap here for formatting  -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
+  
+  
   <div class="container">
 
+
+    
+    <h2>Welcome User : <%= username %></h2>
+    
+ 
 
     <div class="row">
 
@@ -16,9 +25,17 @@
             <h4 class="card-title" style="text-align: center;">Account Stats</h5>
               <table class = "table">
                 <thead>
-                  <th>Your Rank </th>
-                  <th>Rank Value </th>   
+                  <th>Username </th>
+                  <th>Rank </th>   
                 </thead>
+                <tbody>
+                  <% data.forEach(el => { %>
+                    <tr>
+                      <td><%=el.username%></td>
+                      <td><%=el.rank%></td>
+                    </tr>
+                  <%})%>
+                </tbody>
               </table>
           </div>
         </div>
@@ -52,6 +69,41 @@
                     </div>
                 </div>
 
+                <p><br></p>
+
+              <!-- add dropdown icon -->
+              <div class="dropdown">
+                  <button class="btn btn-success dropdown-toggle" 
+                    type = "button"
+                    id="dropdownMenuButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false">
+                      Pick Icon
+                  </button>
+                  
+                <div class="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item">
+                    <img <% src ="../../resources/img/logo.jpg" %>
+                      width="20"
+                      height="15"> &nbsp name 1</a>
+                  <a class="dropdown-item">
+                    <img  src ="https://media.geeksforgeeks.org/wp-content/uploads/20200630132504/uflag.jpg"
+
+                      width="20"
+                      height="15"> &nbsp USA</a>
+                  <a class="dropdown-item">
+                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20200630132502/eflag.jpg"
+ 
+                      width="20"
+                      height="15"> &nbsp Britain</a>
+                </div>
+              </div>
+                
+    
+
+
                   <p><br></p>
                   <p><br></p>
                   <button type="submit" id = "submit_button" class="btn btn-primary">Save Changes</button>
@@ -66,8 +118,17 @@
             <h4 class="card-title" style="text-align: center;">Leaderboard</h5>
               <table class = "table">
                 <thead>
-                  <th>Players </th>
+                  <th>Player </th>
+                  <th>Total Wins </th>
                 </thead>
+                <tbody>
+                  <% data.forEach(el => { %>
+                    <tr>
+                      <td><%=el.username%></td>
+                      <td><%=el.wins%></td>
+                    </tr>
+                  <%})%>
+                </tbody>
               </table>
           </div>
         </div>
@@ -82,3 +143,4 @@
   </div>
 </main>
 <!-- include footer -->
+<%- include ('../partials/footer') %>
