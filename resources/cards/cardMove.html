@@ -61,55 +61,85 @@ body {
   color: white;
   transform: rotateY(180deg);
 }
+
+#Deck1{
+	position:fixed;
+	left:20px;
+	bottom:10px;
+	height:250px;
+	width:150px;
+	background:black;
+}
+#Deck2{
+	position:fixed;
+	right:20px;
+	bottom:10px;
+	height:250px;
+	width:150px;
+	background: blue;
+}
 </style>
 </head>
 <body>
 
 <h1>Card Animation Testing</h1>
-<button id="button" onclick="duplicate()">Continue Game (Duplicate atm)</button>
-<button id="button" onclick="diagonalMove()">Continue Game (Duplicate atm)</button>
+<button id="button" onclick="score()">Score Cards</button>
+<button id="button" onclick="diagonalMove()">Continue Game (Diagonal Transition atm)</button>
 
-<div class="container overflow-hidden"> 
-    
-	<div class="row gy-5">
-		<div class="col-sm" id="card1">
+<div class="container "> 
+  <div class="row" style="text-align: center;">
+  	<h2 >Score</h2>
+  	<div class ='col-sm'>
+  		<p id="P1Score" style>0 </p>
+  	</div>
+  	<div class ='col-sm'>
+  		<p id="P1Score" style>- </p>
+  	</div>
+  	<div class ='col-sm'>
+  		<p id="P1Score" style>0</p>
+  	</div>
+  </div>
+	<div class="row ">
+		
+		
+
+
+	</div>
+
+	<div class="row gx-5">
+		<div class="col-sm" id = "Deck1">
+			<div class="col-sm" id="card1">
 			<div class="flip-box">
 			  <div class="flip-box-inner">
 			    <div class="flip-box-front">
 			      <img  alt="Card1" style="width:150px;height:250px">
 			    </div>
 			    <div class="flip-box-back">
-			      <h2 id= "cardTitle">Card 1</h2>
+			      <h2 id= "card1Title">Card 1</h2>
 			      <p>This is the value of the card</p>
-			      
+			      <p class="p-3 border bg-dark" id="Card1Value" style="width:10px;left:50%;text-align:center;">4</p>
 			    </div>
 			  </div>
 			</div>
 		</div>
-		<div class="col-sm" id="card2">
+		</div>
+
+		<div class="col-sm" id = "Deck2">
+			<div class="col-sm" id="card2">
 			<div class="flip-box">
 			  <div class="flip-box-inner">
 			    <div class="flip-box-front">
 			      <img  alt="Card2" style="width:150px;height:250px">
 			    </div>
 			    <div class="flip-box-back">
-			      <h2 id= "cardTitle">Card 2</h2>
+			      <h2 id= "Card2Title">Card 2</h2>
 			      <p>This is the value of the card</p>
+			      <p class="p-3 border bg-dark" id="Card2Value" style="width:10px;left:50%;text-align:center;">2</p>
 			      
 			    </div>
 			  </div>
 			</div>
 		</div>
-
-
-	</div>
-
-	<div class="row gy-5">
-		<div class="col-sm" id = "Deck1">
-			<p class="p-3 bg-light"> Deck 1</p>
-		</div>
-		<div class="col-sm" id = "Deck2">
-			<p class="p-3 bg-light">Deck 2</p>
 		</div>
 	</div>
 
@@ -123,16 +153,21 @@ body {
 
 <script>
 	var i = 0;
-	var original = document.getElementById('duplicater');
-
-function duplicate() {
-    var clone = original.cloneNode(true); 
-
-    clone.id = "duplicater" + ++i;
-    original.parentNode.appendChild(clone);
-    
-    
-    document.getElementById('cardTitle').innerText =i;
+	var card1 = document.getElementById('card1');
+	var card2 = document.getElementById('card2');
+	var P1Score =0;
+	var P2Score =0;
+function score(){
+	card1Value= document.getElementById('Card1Value').innerText;
+	card2Value= document.getElementById('Card2Value').innerText;
+	if(card1Value>card2Value){
+		P1Score++;
+		document.getElementById("P1Score").innerText = P1Score;
+	}
+	else if(card1Value<card2Value){
+		P2Score++;
+		document.getElementById("P2Score").innerText = P2Score;
+	}
 
 }
 
