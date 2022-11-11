@@ -83,6 +83,7 @@ app.post('/register', async (req, res) => {
 });
 
 app.post('/login', async (req,res) => {
+  user.username=req.body.username;
   const query = 'SELECT password FROM users WHERE username=$1;';
   db.any(query, [req.body.username])
       .then(async (data) => {
@@ -188,17 +189,6 @@ app.get('/profile', async(req, res) =>{
       message: 'Please enter both username and password',
     });    
     })
-   
-    //res.redirect('/profile');
-    // res.redirect('/profile', {
-    //   error: true,
-    //   message: 'Please enter both username and password'
-    // })
-    // res.redirect("pages/profile",{
-    //   error: true,
-    //   message: "Please enter both username and password",
-
-    //}); 
 
   }
   });
@@ -207,9 +197,25 @@ app.get('/profile', async(req, res) =>{
 
 
   app.post('/profile_icon', async (req, res) => {
-    console.log("in profile_icon");
-    res.redirect('/profile');
-    
+    //console.log("in profile_icon");
+    //console.log(req.body.selectpicker);
+    //update link in database
+
+    var query = `UPDATE users          
+    SET icon = $1
+    WHERE users.username = $2
+    RETURNING *`;
+    db.any(query, [req.body.selectpicker, user.username])
+      .then(()=>{
+        res.redirect('/profile');
+    })
+      .catch( () =>{
+      //add error message
+      res.redirect('/profile');
+      console.log("post profile error");
+    });
+
+
 
   });
 
