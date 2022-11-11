@@ -67,23 +67,60 @@ body {
 
 <h1>Card Animation Testing</h1>
 <button id="button" onclick="duplicate()">Continue Game (Duplicate atm)</button>
-<button id="button" onclick="hover()">Continue Game (Duplicate atm)</button>
-<div id="duplicater"> 
+<button id="button" onclick="diagonalMove()">Continue Game (Duplicate atm)</button>
+
+<div class="container overflow-hidden"> 
+    
+	<div class="row gy-5">
+		<div class="col-sm" id="card1">
+			<div class="flip-box">
+			  <div class="flip-box-inner">
+			    <div class="flip-box-front">
+			      <img  alt="Card1" style="width:150px;height:250px">
+			    </div>
+			    <div class="flip-box-back">
+			      <h2 id= "cardTitle">Card 1</h2>
+			      <p>This is the value of the card</p>
+			      
+			    </div>
+			  </div>
+			</div>
+		</div>
+		<div class="col-sm" id="card2">
+			<div class="flip-box">
+			  <div class="flip-box-inner">
+			    <div class="flip-box-front">
+			      <img  alt="Card2" style="width:150px;height:250px">
+			    </div>
+			    <div class="flip-box-back">
+			      <h2 id= "cardTitle">Card 2</h2>
+			      <p>This is the value of the card</p>
+			      
+			    </div>
+			  </div>
+			</div>
+		</div>
+
+
+	</div>
+
+	<div class="row gy-5">
+		<div class="col-sm" id = "Deck1">
+			<p class="p-3 bg-light"> Deck 1</p>
+		</div>
+		<div class="col-sm" id = "Deck2">
+			<p class="p-3 bg-light">Deck 2</p>
+		</div>
+	</div>
+
+</div>
+
     
 
-	<div class="flip-box">
-	  <div class="flip-box-inner">
-	    <div class="flip-box-front">
-	      <img  alt="Card" style="width:150px;height:250px">
-	    </div>
-	    <div class="flip-box-back">
-	      <h2 id= "cardTitle">Card Value</h2>
-	      <p>This is the value of the card</p>
-	      
-	    </div>
-	  </div>
-	</div>
-</div>
+	
+
+
+
 <script>
 	var i = 0;
 	var original = document.getElementById('duplicater');
@@ -99,14 +136,20 @@ function duplicate() {
 
 }
 
-function hover(){
+function diagonalMove(){
 	let start = Date.now();
 	let timer = setInterval(function(){
-		let timePassed = Date.now() -start;
-		document.getElementById('duplicater').style.position = 'relative';
-		document.getElementById('duplicater').style.left = timePassed/5 +'px';
-		document.getElementById('duplicater').style.top = timePassed/5 +'px';
-		if (timePassed>1000){
+	let timePassed = Date.now() -start;
+	let card1 =document.getElementById('card1')
+	let card2 =document.getElementById('card2')
+	card1.style.position = 'relative';
+	card1.style.left = timePassed/5 +'px';
+	card1.style.bottom = timePassed/5 +'px';
+
+	card2.style.position = 'relative';
+	card2.style.right = timePassed/5 +'px';
+	card2.style.bottom = timePassed/5 +'px';
+	if (timePassed>1000){
 			clearInterval(timer);
 		}
 	},20);
