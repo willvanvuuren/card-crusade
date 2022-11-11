@@ -182,30 +182,7 @@ app.get('/profile', async(req, res) =>{
     console.log("in profile_icon");
     res.redirect('/profile');
     
-    //console.log(user.username);
-    //const hash = await bcrypt.hash(req.body.password, 10);
 
-  //if(req.body.username!="" && req.body.password!="")
-  // {
-  //   var query = `UPDATE users          
-  //               SET username = $1, password = $2
-  //               WHERE users.username = $3
-  //               RETURNING *`;
-  //   db.any(query, [req.body.username, hash, user.username])
-  //   .then(()=>{
-  //     user.username=req.body.username;
-  //     res.redirect('/profile');
-  //   })
-  //   .catch( () =>{
-  //     //add error message
-  //       res.redirect('/profile');
-  //       console.log("post profile error");
-  //   });
-  // }
-  // else{
-  //   console.log("please enter username and password");
-  //   res.redirect('/profile');
-  // }
   });
 
 
