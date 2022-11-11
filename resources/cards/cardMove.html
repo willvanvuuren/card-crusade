@@ -69,6 +69,7 @@ body {
 	height:250px;
 	width:150px;
 	background:gray;
+	z-index: -52;
 }
 #Deck2{
 	position:fixed;
@@ -152,9 +153,11 @@ body {
 function generateDecks(){
 	for(let i =0;i<deck2.length;i++){
 		const newCard= card2.cloneNode(true);
-		newCard.id = "card2"+i;
-		let cardValue = deck2[i];
+		newCard.id = '2Pcard'+i;
+		const cardValue= deck2[i];
 		newCard.style.zIndex=0-i;
+		newCard.style.position="absolute";
+		console.log(newCard.id);
 		console.log(newCard.innerText);
 		console.log(newCard.style.zIndex);
 		document.getElementById("Deck1").appendChild(newCard);
@@ -179,7 +182,7 @@ function diagonalMove(){
 	let start = Date.now();
 	let timer = setInterval(function(){
 	let timePassed = Date.now() -start;
-	let card1 =document.getElementById('card1')
+	let card1 =document.getElementById('2Pcard1')
 	let card2 =document.getElementById('card2')
 	card1.style.position = 'relative';
 	card1.style.left = timePassed/5 +'px';
