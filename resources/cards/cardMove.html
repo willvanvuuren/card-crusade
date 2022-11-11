@@ -68,7 +68,7 @@ body {
 	bottom:10px;
 	height:250px;
 	width:150px;
-	background:black;
+	background:gray;
 }
 #Deck2{
 	position:fixed;
@@ -84,6 +84,7 @@ body {
 
 <h1>Card Animation Testing</h1>
 <button id="button" onclick="score()">Score Cards</button>
+<button id="button" onclick="generateDecks()">Generate Cards</button>
 <button id="button" onclick="diagonalMove()">Continue Game (Diagonal Transition atm)</button>
 
 <div class="container "> 
@@ -108,20 +109,7 @@ body {
 
 	<div class="row gx-5">
 		<div class="col-sm" id = "Deck1">
-			<div class="col-sm" id="card1">
-			<div class="flip-box">
-			  <div class="flip-box-inner">
-			    <div class="flip-box-front">
-			      <img  alt="Card1" style="width:150px;height:250px">
-			    </div>
-			    <div class="flip-box-back">
-			      <h2 id= "card1Title">Card 1</h2>
-			      <p>This is the value of the card</p>
-			      <p class="p-3 border bg-dark" id="Card1Value" style="width:10px;left:50%;text-align:center;">4</p>
-			    </div>
-			  </div>
-			</div>
-		</div>
+			
 		</div>
 
 		<div class="col-sm" id = "Deck2">
@@ -155,8 +143,24 @@ body {
 	var i = 0;
 	var card1 = document.getElementById('card1');
 	var card2 = document.getElementById('card2');
+	var deck1Div = document.getElementById('Deck1');
 	var P1Score =0;
 	var P2Score =0;
+	var deck1 =[2,3,4,5,6];
+	var deck2 =[7,8,9,10];
+
+function generateDecks(){
+	for(let i =0;i<deck2.length;i++){
+		const newCard= card2.cloneNode(true);
+		newCard.id = "card2"+i;
+		let cardValue = deck2[i];
+		newCard.style.zIndex=0-i;
+		console.log(newCard.innerText);
+		console.log(newCard.style.zIndex);
+		document.getElementById("Deck1").appendChild(newCard);
+	}
+}
+
 function score(){
 	card1Value= document.getElementById('Card1Value').innerText;
 	card2Value= document.getElementById('Card2Value').innerText;
