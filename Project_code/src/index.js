@@ -152,7 +152,7 @@ app.get('/profile', async(req, res) =>{
   });
 
   app.post('/profile', async (req, res) => {
-    console.log(user.username);
+    //console.log(user.username);
     const hash = await bcrypt.hash(req.body.password, 10);
 
   if(req.body.username!="" && req.body.password!="")
@@ -173,10 +173,38 @@ app.get('/profile', async(req, res) =>{
     });
   }
   else{
-    console.log("please enter username and password");
-    res.redirect('/profile');
+    console.log("please enter both username and password");
+   
+
+    const query = "SELECT * FROM users ORDER BY wins DESC"; 
+  
+    db.any(query, [])
+    .then(async (data) => {
+      //console.log(data[0].username); //works
+    res.render("pages/profile",{
+      data,
+      username,  
+      error: true,
+      message: 'Please enter both username and password',
+    });    
+    })
+   
+    //res.redirect('/profile');
+    // res.redirect('/profile', {
+    //   error: true,
+    //   message: 'Please enter both username and password'
+    // })
+    // res.redirect("pages/profile",{
+    //   error: true,
+    //   message: "Please enter both username and password",
+
+    //}); 
+
   }
   });
+
+
+
 
   app.post('/profile_icon', async (req, res) => {
     console.log("in profile_icon");

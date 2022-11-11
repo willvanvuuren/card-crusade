@@ -8,6 +8,17 @@
 
   <div class="container">
 
+
+    <% if (locals.message) { %>
+      <div
+        class="alert alert-<%- locals.error ? 'danger' : 'success' %>"
+        role="alert"
+      >
+        <%= message %>
+      </div>
+  <% } %>
+ 
+
     <h2>Welcome User : <%= username %></h2>
 
     <div class="row">
@@ -60,79 +71,7 @@
 
                 <p><br></p>
 
-              <!-- add dropdown icon -->
-              <!-- <div class="dropdown">
-                  <button class="btn btn-success dropdown-toggle" 
-                    type = "button"
-                    id="dropdownMenuButton"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false">
-                      Pick Icon
-                  </button> -->
-                  
-                <!-- <div class="dropdown-menu"
-                  aria-labelledby="dropdownMenuButton">
-
-                  <a class="dropdown-item">   
-                    <img src =<"../../resources/img/logo.jpg" %>
-                      width="20"
-                      height="15"> &nbsp name 1</a>
-
-                  <a class="dropdown-item">
-                    <img src="https://www.geonames.org/flags/x/cn.gif"
-                      width="20"
-                      height="15"> &nbsp China</a>
-
-                  <a class="dropdown-item">
-                    <img src="https://www.geonames.org/flags/x/fr.gif"
-                      width="20"
-                      height="15"> &nbsp France</a>
-
-                  <a class="dropdown-item">
-                    <img  src ="https://www.geonames.org/flags/x/de.gif"
-                      width="20"
-                      height="15"> &nbsp Germany</a>
-
-                  <a class="dropdown-item">
-                    <img  src ="https://www.geonames.org/flags/x/gb.gif"
-                      width="20"
-                      height="15"> &nbsp Great Britain</a>
-
-                  <a class="dropdown-item">
-                    <img  src ="https://www.geonames.org/flags/x/in.gif"
-                      width="20"
-                      height="15"> &nbsp India</a>
-
-                  <a class="dropdown-item">
-                    <img  src ="https://www.geonames.org/flags/x/ie.gif"
-                      width="20"
-                      height="15"> &nbsp Ireland</a>
-
-                  <a class="dropdown-item">
-                    <img  src ="https://www.geonames.org/flags/x/it.gif"
-                      width="20"
-                      height="15"> &nbsp Italy</a>
-
-                  <a class="dropdown-item">
-                    <img  src ="https://www.geonames.org/flags/x/jm.gif"
-                      width="20"
-                      height="15"> &nbsp Jamaica</a>
-
-                  <a class="dropdown-item">
-                    <img  src ="https://www.geonames.org/flags/x/mx.gif"
-                      width="20"
-                      height="15"> &nbsp Mexico</a>
-
-                  <a class="dropdown-item">
-                    <img  src ="https://www.geonames.org/flags/x/us.gif"
-                      width="20"
-                      height="15"> &nbsp USA</a>     
-                </div>
-              </div> -->
-
-
-                
+   
               
                   <p><br></p>
                   <button type="submit" id = "submit_button" class="btn btn-primary">Save Changes</button>
