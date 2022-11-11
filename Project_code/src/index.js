@@ -48,15 +48,18 @@ app.use(
   })
 );
 
-// TODO add icon (needs to be in database)
-const user = {
+// place to store variable needed by multiple pages
+ user = {
   user_id: undefined,
   username: undefined,
   email: undefined,
   password: undefined,
   wins: undefined,
   losses: undefined,
+  icon: undefined,
 };
+
+user.username="Janek"; //need to set this at login, used to update username/password in profile
 
 
 app.get('/login', (req,res) => {
@@ -124,8 +127,11 @@ app.get('/', (req,res) => {
 app.listen(3000);
 console.log('Server is listening on port 3000');
 
+
+
 app.get('/profile', async(req, res) =>{
-  username = "Geri"; //need to read this in during login
+  //username = "Geri"; //need to read this in from login
+  username=user.username; //need this from login
   const query = "SELECT * FROM users ORDER BY wins DESC"; 
   
   db.any(query, [])
@@ -137,20 +143,71 @@ app.get('/profile', async(req, res) =>{
     });    
     })
 
-
     .catch((error) => {
       res.render("pages/profile", {
         error: true,
         message: 'Error'
       })
-
-      console.log("error");
       });
-    
-
-    
-
-
-
   });
+
+  app.post('/profile', async (req, res) => {
+    console.log(user.username);
+    const hash = await bcrypt.hash(req.body.password, 10);
+
+  if(req.body.username!="" && req.body.password!="")
+  {
+    var query = `UPDATE users          
+                SET username = $1, password = $2
+                WHERE users.username = $3
+                RETURNING *`;
+    db.any(query, [req.body.username, hash, user.username])
+    .then(()=>{
+      user.username=req.body.username;
+      res.redirect('/profile');
+    })
+    .catch( () =>{
+      //add error message
+        res.redirect('/profile');
+        console.log("post profile error");
+    });
+  }
+  else{
+    console.log("please enter username and password");
+    res.redirect('/profile');
+  }
+  });
+
+  app.post('/profile_icon', async (req, res) => {
+    console.log("in profile_icon");
+    res.redirect('/profile');
+    
+    //console.log(user.username);
+    //const hash = await bcrypt.hash(req.body.password, 10);
+
+  //if(req.body.username!="" && req.body.password!="")
+  // {
+  //   var query = `UPDATE users          
+  //               SET username = $1, password = $2
+  //               WHERE users.username = $3
+  //               RETURNING *`;
+  //   db.any(query, [req.body.username, hash, user.username])
+  //   .then(()=>{
+  //     user.username=req.body.username;
+  //     res.redirect('/profile');
+  //   })
+  //   .catch( () =>{
+  //     //add error message
+  //       res.redirect('/profile');
+  //       console.log("post profile error");
+  //   });
+  // }
+  // else{
+  //   console.log("please enter username and password");
+  //   res.redirect('/profile');
+  // }
+  });
+
+
+
 

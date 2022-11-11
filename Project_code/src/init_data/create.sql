@@ -6,5 +6,6 @@ CREATE TABLE users(
     wins INTEGER NOT NULL,
     losses INTEGER NOT NULL,
     points INTEGER,
-    rank INTEGER
+    rank INTEGER,
+    icon VARCHAR(50)
 );
