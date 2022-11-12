@@ -10,6 +10,10 @@
 ## Jose Soto
 
 ## William Van Vuuren
+*   Task [#2](https://github.com/willvanvuuren/card-crusade/issues/2)
+*   Task [#10](https://github.com/willvanvuuren/card-crusade/issues/10)
+*   Task [#24](https://github.com/willvanvuuren/card-crusade/issues/24)
+*   Task [#25](https://github.com/willvanvuuren/card-crusade/issues/25)
 
 ## Elizabeth Sorenson
 
