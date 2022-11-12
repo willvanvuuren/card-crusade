@@ -125,21 +125,7 @@ body {
 
 </div>
 
-<div class="col-sm" id="card2" style="display:none;">
-			<div class="flip-box">
-			  <div class="flip-box-inner">
-			    <div class="flip-box-front">
-			      <img  alt="Card2" style="width:150px;height:250px">
-			    </div>
-			    <div class="flip-box-back">
-			      <h2 id= "Card2Title">Card 2</h2>
-			      <p>This is the value of the card</p>
-			      <p class="p-3 border bg-dark" id="Card2Value" style="width:10px;left:50%;text-align:center;">2</p>
-			      
-			    </div>
-			  </div>
-			</div>
-</div>
+
 
     
 
@@ -156,19 +142,20 @@ body {
 	var P2Score =0;
 	var deck1 =[2,3,4,5,6];
 	var deck2 =[7,8,9,10,11];
-
+	var html1 = "<div class='col-sm' id='card1' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Card2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
+	var html2 = "<div class='col-sm' id='card2' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Card2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
 function generateDecks(){
 	for(let i =0;i<deck1.length;i++){
 		//copy existing card element that has been disabled, could be replaced with a partial at some point
-		const newCard= card2.cloneNode(true);
+		const newCard= document.createElement('div');
+		newCard.innerHTML= html1;
 		
 		newCard.id = '1Pcard'+i;
-		
 		const cardValue= deck2[i];
 
 		//stack em with z-index
 		newCard.style.position="absolute";
-		newCard.style.display="block";
+		newCard.style.display="inline";
 		newCard.style.zIndex=0-i;
 		
 		
@@ -180,7 +167,8 @@ function generateDecks(){
 	}
 	for(let i =0;i<deck2.length;i++){
 		//copy existing card element that has been disabled, could be replaced with a partial at some point
-		const newCard= card2.cloneNode(true);
+		const newCard= document.createElement('div');
+		newCard.innerHTML = html2;
 		
 		newCard.id = '2Pcard'+i;
 		
@@ -188,7 +176,7 @@ function generateDecks(){
 
 		//stack em with z-index
 		newCard.style.position="absolute";
-		newCard.style.display="block";
+		newCard.style.display="inline";
 		newCard.style.zIndex=0-i;
 		
 		
@@ -206,13 +194,15 @@ function score(){
 	if(card1Value>card2Value){
 		P1Score++;
 		document.getElementById("P1Score").innerText = P1Score;
+		document.getElementById('winner').innerText = "P1 Wins!";
 	}
 	else if(card1Value<card2Value){
 		P2Score++;
 		document.getElementById("P2Score").innerText = P2Score;
+		document.getElementById('winner').innerText = "P2 Wins!";
 	}
 	else if(card1Value===card2Value){
-		document.getElementById('winner').innerText = "It's a tie!"
+		document.getElementById('winner').innerText = "It's a tie!";
 	}
 }
 
@@ -222,7 +212,7 @@ function diagonalMove(){
 	let timePassed = Date.now() -start;
 	let card1id = '1Pcard'+index;
 	let card2id = '2Pcard'+index;
-	console.log(card1id);
+	
 	let card1 =document.getElementById(card1id);
 	let card2 =document.getElementById(card2id);
 
