@@ -15,5 +15,9 @@
 *   Task [#25](https://github.com/willvanvuuren/card-crusade/issues/25)
 
 ## Elizabeth Sorenson
+*   Task [#1](https://github.com/willvanvuuren/card-crusade/issues/1)
+*   Task [#19](https://github.com/willvanvuuren/card-crusade/issues/19)
+*   Task [#20](https://github.com/willvanvuuren/card-crusade/issues/20)
+*   Task [#21](https://github.com/willvanvuuren/card-crusade/issues/21) 
 
 ## Daniel Hernandez
