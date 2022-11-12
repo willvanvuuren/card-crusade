@@ -7,6 +7,11 @@
 *   Task [#18](https://github.com/willvanvuuren/card-crusade/issues/18)
 
 ## Jose Soto
+*   Task [#5](https://github.com/willvanvuuren/card-crusade/issues/5)
+*   Task [#11](https://github.com/willvanvuuren/card-crusade/issues/11)
+*   Task [#13](https://github.com/willvanvuuren/card-crusade/issues/13)
+*   Task [#15](https://github.com/willvanvuuren/card-crusade/issues/15)
+*   Task [#23](https://github.com/willvanvuuren/card-crusade/issues/23)
 
 ## William Van Vuuren
 *   Task [#2](https://github.com/willvanvuuren/card-crusade/issues/2)
