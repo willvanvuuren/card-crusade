@@ -26,3 +26,6 @@
 *   Task [#21](https://github.com/willvanvuuren/card-crusade/issues/21) 
 
 ## Daniel Hernandez
+*   Task [#8](https://github.com/willvanvuuren/card-crusade/issues/8)
+*   Task [#6](https://github.com/willvanvuuren/card-crusade/issues/6)
+*   Task [#7](https://github.com/willvanvuuren/card-crusade/issues/7)
