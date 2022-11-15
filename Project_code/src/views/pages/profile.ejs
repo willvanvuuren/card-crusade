@@ -1,5 +1,6 @@
 
-<!-- include header and menu/navbar -->
+<!-- include header and navbar -->
+<%- include ('../partials/header') %> <%- include ('../partials/navbargame') %>
 
 <main>
   <!-- including bootstrap here for formatting  -->
@@ -8,86 +9,216 @@
   <div class="container">
 
 
+    <% if (locals.message) { %>
+      <div
+        class="alert alert-<%- locals.error ? 'danger' : 'success' %>"
+        role="alert"
+      >
+        <%= message %>
+      </div>
+    <% } %>
+ 
+
+    <h3>Welcome User : <%= username %></h3>
+
     <div class="row">
 
       <div class="col">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 16rem;">
           <div class="card-body">
             <h4 class="card-title" style="text-align: center;">Account Stats</h5>
               <table class = "table">
                 <thead>
-                  <th>Your Rank </th>
-                  <th>Rank Value </th>   
+                  <th>Username </th>
+                  <th>Rank </th>   
                 </thead>
+                <tbody>
+                  <% data.forEach(el => { %>
+                    <tr>
+                      <td><%=el.username%></td>
+                      <td><%=el.rank%></td>
+                    </tr>
+                  <%})%>
+                </tbody>
               </table>
           </div>
         </div>
       </div>
 
       <div class="col">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 16rem;">
 
           <div class="card-body">
-            <h4 class="card-title" style="text-align: center;">Settings</h4>
+            <h4 class="card-title" style="text-align: center;">User Settings</h4>
       
-              <form action = "/save_changes" method  ="post">
+              <form action = "/profile" method  ="post">
+              
                 <div class="form-group">
-                  <label for="name">Change username</label>
+                  <label for="name" >New username</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="username" name="username">
                     </div>
                 </div>
 
+                <p><br></p>
+
                 <div class="form-group">
-                  <label for="pw">Change password</label>
+                  <label for="pw">New password</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="password" name="password" >
                     </div>
                 </div>
+
+                  <p><br></p>          
                   <p><br></p>
-                  <p><br></p>
-                  <button type="submit" id = "submit_button" class="btn btn-primary">Save Changes</button>
+                <button type="submit" id = "submit_button" class="btn btn-primary">Save Changes</button>
               </form>
           </div>
         </div>
       </div>
 
+      
+
       <div class="col">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 16rem;">
           <div class="card-body">
             <h4 class="card-title" style="text-align: center;">Leaderboard</h5>
               <table class = "table">
                 <thead>
-                  <th>Players </th>
+                  <th>Player </th>
+                  <th>Total Wins </th>
                 </thead>
+                <tbody>
+                  <% data.forEach(el => { %>
+                    <tr>
+                      <td><%=el.username%></td>
+                      <td><%=el.wins%></td>
+                      <td><img src=<%=el.icon%>
+                        width="20"
+                        height="15"></td>
+                    </tr>
+                  <%})%>
+                </tbody>
               </table>
           </div>
         </div>
       </div>
 
+      <div class="col">
+        <div class="card" style="width: 16rem;">
 
-   
+          <div class="card-body">
+            <h4 class="card-title" style="text-align: center;">Icon selection</h4>
+             
 
+            <!-- <form action = "/profile_icon" method  ="post">
 
+            <div class="card-body">
+              <h4 class="card-title" style="text-align: center;">Icon selection</h4>
+                     
+                        <div class="dropdown">
+                            <button class="btn btn-success dropdown-toggle" 
+                             action = "/profile_icon" method  = "post"
+                              type = "button"
+                              id="dropdownMenuButton"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                                Pick Icon
+                            </button>
+                            
+                          <div class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton">
+    
+                            <a class="dropdown-item">
+                              <img src="https://www.geonames.org/flags/x/cn.gif"
+                                width="20"
+                                height="15"> &nbsp China</a>
+          
+                            <a class="dropdown-item">
+                              <img src="https://www.geonames.org/flags/x/fr.gif"
+                                width="20"
+                                height="15"> &nbsp France</a>
+          
+                            <a class="dropdown-item">
+                              <img  src ="https://www.geonames.org/flags/x/de.gif"
+                                width="20"
+                                height="15"> &nbsp Germany</a>
+          
+                            <a class="dropdown-item">
+                              <img  src ="https://www.geonames.org/flags/x/gb.gif"
+                                width="20"
+                                height="15"> &nbsp Great Britain</a>
+          
+                            <a class="dropdown-item">
+                              <img  src ="https://www.geonames.org/flags/x/in.gif"
+                                width="20"
+                                height="15"> &nbsp India</a>
+          
+                            <a class="dropdown-item">
+                              <img  src ="https://www.geonames.org/flags/x/ie.gif"
+                                width="20"
+                                height="15"> &nbsp Ireland</a>
+          
+                            <a class="dropdown-item">
+                              <img  src ="https://www.geonames.org/flags/x/it.gif"
+                                width="20"
+                                height="15"> &nbsp Italy</a>
+          
+                            <a class="dropdown-item">
+                              <img  src ="https://www.geonames.org/flags/x/jm.gif"
+                                width="20"
+                                height="15"> &nbsp Jamaica</a>
+          
+                            <a class="dropdown-item">
+                              <img  src ="https://www.geonames.org/flags/x/mx.gif"
+                                width="20"
+                                height="15"> &nbsp Mexico</a>
+          
+                            <a class="dropdown-item">
+                              <img  src ="https://www.geonames.org/flags/x/us.gif"
+                                width="20"
+                                height="15"> &nbsp USA</a>     
+                          </div> 
+                        </div>
+            </div>
+            </form> -->
 
-      </div>
+              <form id="tableForm" action="/profile_icon" method="post">
+                <select class="selectpicker" data-style="btn-info" name="selectpicker">
+                  <optgroup label="Select Table">
+                    <option name="" value="0">Choose Flag Icon</option>
+                    <option name="table1"  
+                            value="https://www.geonames.org/flags/x/cn.gif";>🇨🇳&emsp;China</option>
+                    <option name="table2" value="https://www.geonames.org/flags/x/fr.gif">🇫🇷&emsp;France</option>
+                    <option name="table3" value="https://www.geonames.org/flags/x/de.gif">🇩🇪&emsp;Germany</option>
+                    <option name="table4" value="https://www.geonames.org/flags/x/gb.gif">🇬🇧&emsp;Great Britain</option>
+                    <option name="table5" value="https://www.geonames.org/flags/x/in.gif">🇮🇳&emsp;India</option>
+                    <option name="table6" value="https://www.geonames.org/flags/x/ie.gif">🇮🇪&emsp;Ireland</option>
+                    <option name="table7" value="https://www.geonames.org/flags/x/it.gif">🇮🇹&emsp;Italy</option>
+                    <option name="table8" value="https://www.geonames.org/flags/x/jm.gif">🇯🇲&emsp;Jamaica</option>
+                    <option name="table9" value="https://www.geonames.org/flags/x/mx.gif">🇲🇽&emsp;Mexico</option>
+                    <option name="table10" value="https://www.geonames.org/flags/x/us.gif">🇺🇸&emsp;USA</option>
+                  </optgroup>
+                </select>
+                <p><br></p> 
+                <p><br></p> 
+                <p><br></p> 
+                <p><br></p> 
+                <p><br></p> 
+                <p><br></p> 
+                <p><br></p> 
+                <input type="submit" />
+              </form>
+
+          </div>
+        </div>
+
+      
     </div>
   </div>
-    
-    
 
 
-
-
-
-
-
-        
-   
-
-
- 
-
-  </div>
 </main>
 <!-- include footer -->
+<%- include ('../partials/footer') %>
