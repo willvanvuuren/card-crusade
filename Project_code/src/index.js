@@ -39,6 +39,7 @@ app.use(
       secret: process.env.SESSION_SECRET,
       saveUninitialized: false,
       resave: false,
+
     })
   );
     
@@ -153,6 +154,7 @@ app.get('/profile', async(req, res) =>{
         error: true,
         message: 'Error'
       })
+
       });
   });
 
