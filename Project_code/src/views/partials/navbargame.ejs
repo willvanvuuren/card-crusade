@@ -6,10 +6,10 @@
   
   padding: 5px;
   background-color: #EFD28D;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   position: absolute;
-  top: 4px;
+  top: 5px;
   
 }
 .navbar{
@@ -18,13 +18,9 @@
   height: 50px;
   
 }
-.navbar a:hover{
+li a:hover{
   background-color: #EFD28D;
 }
-.btn a:active{
-  background-color: #DCEDFF;
-}
-
 
 
 </style>
@@ -33,16 +29,22 @@
       <a class="navbar-brand" href="/"></a>
       <ul class="navbar-nav mr-auto">
         <li class="navbar-brand mb-0 h1" style="color: #DCEDFF; text-shadow: 2px 2px 4px #4f2727;" href="/">
-          <div class="box"> Card Crusade</div>
+          <div class="box">Card Crusade</div>
             
         </li>
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item" >
-            <a class="btn btn-sm btn-outline-secondary" style="color: #DCEDFF; border-width: 2px; border-color: #DCEDFF; width:150px; position: absolute; top: 9px; right: 180px; " href="/login">Login</a>
+            <a  class="btn btn-sm btn-outline-secondary" style="color: #DCEDFF; border-width: 2px; border-color: #DCEDFF; width:150px; position: absolute; top: 9px; right: 510px; " href="/play">Play!</a>
         </li>
         <li class="nav-item">
-            <a type="button" class="btn btn-sm btn-outline-secondary" style="color: #DCEDFF; border-width: 2px; border-color: #DCEDFF; width:150px; position: absolute; bottom: 8.5px; right: 15px; " href="/register">Register</a>
+            <a  class="btn btn-sm btn-outline-secondary" style="color: #DCEDFF; border-width: 2px; border-color: #DCEDFF; width:150px; position: absolute; top: 9px; right: 345px; " href="/profile">User Profile</a>
+        </li>
+        <li class="nav-item">
+            <a  class="btn btn-sm btn-outline-secondary" style="color: #DCEDFF; border-width: 2px; border-color: #DCEDFF; width:150px; position: absolute; top: 9px; right: 180px; " href="/profile">Settings</a>
+        </li>
+        <li class="nav-item">
+          <a  class="btn btn-sm btn-outline-secondary" style="color: #DCEDFF; border-width: 2px; border-color: #DCEDFF; width:150px; position: absolute; top: 9px; right: 15px; " href="/logout">Logout</a>
         </li>
       </ul>
     </nav>
