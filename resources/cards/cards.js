@@ -26,7 +26,7 @@ function generateDecks(){
 		
 		
 		
-		console.log("card1Value: "+card1Value);
+		console.log("card1Value: "+card1Value +", zIndex: "+newCard.style.zIndex);
 		//have to add value from array into card
 
 
