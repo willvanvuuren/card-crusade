@@ -82,18 +82,18 @@ function diagonalMove(){
 	let card1 =document.getElementById(card1id);
 	let card2 =document.getElementById(card2id);
 
-	// let card2 =document.getElementById('2Pcard2')
-	card1.style.position = 'relative';
-	card1.style.left = timePassed/5 +'px';
-	card1.style.bottom = timePassed/5 +'px';
+	document.getElementById("P1Field").appendChild(card1);
+	// card1.style.position = 'relative';
+	// card1.style.left = timePassed/5 +'px';
+	// card1.style.bottom = timePassed/5 +'px';
 
-	card2.style.position = 'relative';
-	card2.style.right = timePassed/5 +'px';
-	card2.style.bottom = timePassed/5 +'px';
-	if (timePassed>1000){
-			clearInterval(timer);
-		}
-	},20);
+	// card2.style.position = 'relative';
+	// card2.style.right = timePassed/5 +'px';
+	// card2.style.bottom = timePassed/5 +'px';
+	// if (timePassed>1000){
+	// 		clearInterval(timer);
+	// 	}
+	// },20);
 	index++
 }
 
