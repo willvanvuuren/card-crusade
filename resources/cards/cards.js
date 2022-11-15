@@ -1,13 +1,13 @@
 var index = 0;
-	var card1 = document.getElementById('card1');
-	var card2 = document.getElementById('card2');
-	var deck1Div = document.getElementById('Deck1');
-	var P1Score =0;
-	var P2Score =0;
-	var deck1 =[5,3,4,5,6];
-	var deck2 =[7,8,9,10,11];
-	var html1 = "<div class='col-sm' id='card1' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Card1' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
-	var html2 = "<div class='col-sm' id='card2' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
+var card1 = document.getElementById('card1');
+var card2 = document.getElementById('card2');
+var deck1Div = document.getElementById('Deck1');
+var P1Score =0;
+var P2Score =0;
+var deck1 =[1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+var deck2 =[1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+var html1 = "<div class='col-sm' id='card1' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Card1' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
+var html2 = "<div class='col-sm' id='card2' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
 
 function generateDecks(){
 	for(let i =0;i<deck1.length;i++){
@@ -78,11 +78,15 @@ function diagonalMove(){
 	let timePassed = Date.now() -start;
 	let card1id = '1Pcard'+index;
 	let card2id = '2Pcard'+index;
-	
+	console.log(card1id);
 	let card1 =document.getElementById(card1id);
 	let card2 =document.getElementById(card2id);
+	let field1 =document.getElementById("P1Field");
+	let field2 =document.getElementById("P2Field");
 
-	document.getElementById("P1Field").appendChild(card1);
+	field1.appendChild(card1);
+	field2.appendChild(card2);
+
 	// card1.style.position = 'relative';
 	// card1.style.left = timePassed/5 +'px';
 	// card1.style.bottom = timePassed/5 +'px';
@@ -90,11 +94,13 @@ function diagonalMove(){
 	// card2.style.position = 'relative';
 	// card2.style.right = timePassed/5 +'px';
 	// card2.style.bottom = timePassed/5 +'px';
-	// if (timePassed>1000){
-	// 		clearInterval(timer);
-	// 	}
-	// },20);
-	index++
+	if (timePassed>1000){
+			clearInterval(timer);
+		}
+	},20);
+	index++;
+	console.log(index);
+
 }
 
 
