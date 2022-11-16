@@ -38,6 +38,10 @@ var P1ScoreHTML = document.getElementById("P1Score");
 var P2ScoreHTML = document.getElementById("P2Score");
 var WinnerHTML = document.getElementById("winner");
 
+//initialize arrays that will keep track of card game
+var deck1Play = [];
+var deck2Play = [];
+
 //slightly deprecated but used to keep track of the html values of the cards
 // var html1 = "<div class='col-sm' id='card1' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Card1' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
 // var html2 = "<div class='col-sm' id='card2' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
@@ -68,9 +72,9 @@ function startGame(){
 	P1CardCountHTML.innerText="Cards Left: "+deck1.length;
 	P2CardCountHTML.innerText="Cards Left: "+deck2.length;
 	
-	//initialize arrays that will keep track of card game
-	let deck1Play = [];
-	let deck2Play = [];
+	//reset arrays that will keep track of card game
+	deck1Play = [];
+	deck2Play = [];
 
 	//copy deck 1 and deck 2 values
 	deck1Play =[...deck1];
@@ -81,8 +85,8 @@ function startGame(){
 	shuffleDeck(deck2Play);
 
 	//reset Deck Ids
-	var deck1Ids =[];
-	var deck2Ids=[];
+	deck1Ids =[];
+	deck2Ids=[];
 
 
 	//untested remove feature here
@@ -121,14 +125,31 @@ function startGame(){
 		deck2Pile.appendChild(newCard2);
 		deck2Ids.push(newCard2.id);
 	}
-	console.log(deck1Ids);
-	console.log(deck2Ids);
+	//entry to new game
+	console.log("New Game Started");
+	console.log("P1Score: "+P1Score+", P2Score: "+P2Score)
+	console.log("deck1Values: " +deck1Play+", deck1Ids: "+deck1Ids);
+	console.log("deck2Values: " +deck2Play+", deck2Ids: "+deck2Ids);
 	
 }
 
 function playCard(){
+	//select the first element of both player decks
 	let P1Card = deck1Ids[0];
 	let P2Card = deck2Ids[0];
+	
+	let P1CardHTML = document.getElementById(P1Card);
+	let P2CardHTML = document.getElementById(P2Card);
+
+	//removes first id of cards from the array
+	deck1Ids=deck1Ids.slice(1);
+	deck2Ids=deck2Ids.slice(1);
+	
+	//removes first value of cards from the array
+	deck1Play=deck1Play.slice(1);
+	deck2Play=deck2Play.slice(1);
+
+	console.log(deck1Ids)
 	
 }
 
