@@ -11,6 +11,9 @@ var card2 = document.getElementById('card2');
 var deck1Pile =document.getElementById("Deck1");
 var deck2Pile =document.getElementById("Deck2");
 
+//used to store the card ids for the cards in a players deck for access, reinitialized
+var deck1Ids =[];
+var deck2Ids=[];
 
 //global score values
 var P1Score =0;
@@ -51,6 +54,7 @@ function shuffleDeck(array1){
 
 	}
 }
+
 //function used to start a new game and generate a deck
 function startGame(){
 
@@ -61,8 +65,8 @@ function startGame(){
 	//Reset All Game Conditions
 	P1Score=0;
 	P2Score=0;
-	P1CardCountHTML=deck1.length;
-	P2CardCountHTML=deck2.length;
+	P1CardCountHTML.innerText="Cards Left: "+deck1.length;
+	P2CardCountHTML.innerText="Cards Left: "+deck2.length;
 	
 	//initialize arrays that will keep track of card game
 	let deck1Play = [];
@@ -76,16 +80,16 @@ function startGame(){
 	shuffleDeck(deck1Play);
 	shuffleDeck(deck2Play);
 
-	//used to store the card ids for the cards in a players deck for access, reinitialized
+	//reset Deck Ids
 	var deck1Ids =[];
 	var deck2Ids=[];
 
 
-	//untested feature
+	//untested remove feature here
 	//remove lingering Children inside deck1Pile and deck2Pile
 	deck1Pile.innerHTML="";
 	deck2Pile.innerHTML="";
-
+	//untested remove feature above
 
 
 	for(let i =0;i<deck1Play.length;i++){
@@ -111,6 +115,7 @@ function startGame(){
 		newCard2.innerHTML="<div class='col-sm' id='card2' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='"+newCard2ValueId+"' style='width:10px;left:50%;text-align:center;'>"+card2Value+"</p> </div> </div></div></div>";
 		
 		deck1Pile.appendChild(newCard1);
+
 		deck1Ids.push(newCard1.id);
 
 		deck2Pile.appendChild(newCard2);
@@ -118,10 +123,13 @@ function startGame(){
 	}
 	console.log(deck1Ids);
 	console.log(deck2Ids);
+	
 }
 
 function playCard(){
-	console.log('to be implemented');
+	let P1Card = deck1Ids[0];
+	let P2Card = deck2Ids[0];
+	
 }
 
 //function to generate the decks of both players
