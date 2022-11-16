@@ -20,7 +20,7 @@ var P1Score =0;
 var P2Score =0;
 
 //global values for decks, decks should be shuffled
-var deck1 =[0,8,5];
+var deck1 =[9,9,9];
 var deck2 =[0,5,7];
 
 //global var to keep track of the ids for the cards in the tie pile
@@ -220,8 +220,6 @@ function score(card1Id,card2Id){
 	card2Value= deck2Play[0];
 
 	
-	
-
 	if(card1Value>card2Value){
 		P1Score++;
 		P1ScoreHTML.innerText = P1Score;
@@ -231,62 +229,62 @@ function score(card1Id,card2Id){
 		deck1Play.push(card1Value,card2Value);
 		deck1Ids.push(card1Id,card2Id);
 
-		if(TiePile.length >0){
+		// if(TiePile.length >0){
 	
-			for(let t=TiePile.length-1;t>=0;t--){
+		// 	for(let t=TiePile.length-1;t>=0;t--){
 				
-				let tieCard = document.getElementById(TiePile[t]);
+		// 		let tieCard = document.getElementById(TiePile[t]);
 
-				deck1Pile.appendChild(tieCard);
-				deck1.push(TiePileValues[t]);
-				TiePile.pop();
-			}
+		// 		deck1Pile.appendChild(tieCard);
+		// 		deck1.push(TiePileValues[t]);
+		// 		TiePile.pop();
+		// 	}
 	
-		}
+		// }
 
 	}
 
-	else if(card1Value<card2Value){
-		P2Score++;
-		document.getElementById("P2Score").innerText = P2Score;
-		document.getElementById('winner').innerText = "P2 Wins!";
-		deck2Pile.appendChild(card1);
-		deck2Pile.appendChild(card2);
-		deck2.push(card1Value,card2Value);
-		if(TiePile.length >0){
+	// else if(card1Value<card2Value){
+	// 	P2Score++;
+	// 	document.getElementById("P2Score").innerText = P2Score;
+	// 	document.getElementById('winner').innerText = "P2 Wins!";
+	// 	deck2Pile.appendChild(card1);
+	// 	deck2Pile.appendChild(card2);
+	// 	deck2.push(card1Value,card2Value);
+	// 	if(TiePile.length >0){
 	
-			for(let t=TiePile.length-1;t>=0;t--){
+	// 		for(let t=TiePile.length-1;t>=0;t--){
 				
-				let tieCard = document.getElementById(TiePile[t]);
+	// 			let tieCard = document.getElementById(TiePile[t]);
 
-				deck2Pile.appendChild(tieCard);
-				deck2.push(TiePileValues[t]);
-				TiePile.pop();
-			}
+	// 			deck2Pile.appendChild(tieCard);
+	// 			deck2.push(TiePileValues[t]);
+	// 			TiePile.pop();
+	// 		}
 	
-		}
-	}
-	else if(card1Value===card2Value){
-		document.getElementById('winner').innerText = "It's a tie!";
+	// 	}
+	// }
+	// else if(card1Value===card2Value){
+	// 	document.getElementById('winner').innerText = "It's a tie!";
 		
-		TieField.appendChild(card1);
-		TieField.appendChild(card2);
-		TiePile.push(card1id);
-		TiePile.push(card2id);
-		TiePileValues.push(card1Value,card2Value);
+	// 	TieField.appendChild(card1);
+	// 	TieField.appendChild(card2);
+	// 	TiePile.push(card1id);
+	// 	TiePile.push(card2id);
+	// 	TiePileValues.push(card1Value,card2Value);
 		
-	}
-	if(deck1.length===0 ||deck2.length===0){
-		let P1Score = document.getElementById("P1Score");
-		let P2Score = document.getElementById("P2Score");
-		if(P1Score>P2Score){
-			document.getElementById('winner').innerText = "P1 Wins the game!";
-		}else if(P2Score>P1Score){
-			document.getElementById('winner').innerText = "P2 Wins the game!";
-		}else{
-			document.getElementById('winner').innerText = "It's a final tie!";
-		}
-	}
+	// }
+	// if(deck1.length===0 ||deck2.length===0){
+	// 	let P1Score = document.getElementById("P1Score");
+	// 	let P2Score = document.getElementById("P2Score");
+	// 	if(P1Score>P2Score){
+	// 		document.getElementById('winner').innerText = "P1 Wins the game!";
+	// 	}else if(P2Score>P1Score){
+	// 		document.getElementById('winner').innerText = "P2 Wins the game!";
+	// 	}else{
+	// 		document.getElementById('winner').innerText = "It's a final tie!";
+	// 	}
+	// }
 	
 }
 
