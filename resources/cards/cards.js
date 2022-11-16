@@ -285,11 +285,11 @@ function score(card1Id,card2Id){
 	//P2 Win Conditions
 	else if(card1Value<card2Value){
 		P2Score++;
-		document.getElementById("P2Score").innerText = P2Score;
-		document.getElementById('winner').innerText = "P2 Wins!";
-		deck2Pile.appendChild(card1);
-		deck2Pile.appendChild(card2);
-		deck2.push(card1Value,card2Value);
+		P2ScoreHTML.innerText = P2Score;
+		WinnerHTML.innerText = "P2 Wins!";
+		whoWonLastRound=2;
+		oldCardValue.push(card1Value,card2Value);
+		oldCardID.push(card1Id,card2Id);
 		if(TiePile.length >0){
 	
 			for(let t=TiePile.length-1;t>=0;t--){
