@@ -7,30 +7,122 @@ var card1 = document.getElementById('card1');
 //selects the id for card2 element
 var card2 = document.getElementById('card2');
 
+//used to store the html location of Deck 1 & Deck 2
 var deck1Pile =document.getElementById("Deck1");
 var deck2Pile =document.getElementById("Deck2");
 
-var deck1Ids =[];
-var deck2Ids=[];
 
+//global score values
 var P1Score =0;
 var P2Score =0;
+
+//global values for decks, decks should be shuffled
 var deck1 =[0,8,5];
 var deck2 =[0,5,7];
+
+//global var to keep track of the ids for the cards in the tie pile
 var TiePile =[];
+//globar var to keep track of the values of the cards in the tie pile
 var TiePileValues=[];
-var html1 = "<div class='col-sm' id='card1' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Card1' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
-var html2 = "<div class='col-sm' id='card2' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
+
+//html elements for card count in deck
+var P1CardCountHTML = document.getElementById('deck1Cards');
+var P2CardCountHTML = document.getElementById('deck2Cards');
 
 
-// Function to shuffle decks, implement once i get to internet connection
+//html elements for score count
+var P1ScoreHTML = document.getElementById("P1Score");
+var P2ScoreHTML = document.getElementById("P2Score");
+var WinnerHTML = document.getElementById("winner");
 
-// function shuffle(){
-// 	for(let y=0;y<deck1.length;y++){
+//slightly deprecated but used to keep track of the html values of the cards
+// var html1 = "<div class='col-sm' id='card1' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Card1' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
+// var html2 = "<div class='col-sm' id='card2' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
 
-// 	}
-// }
 
+// Helper function to shuffle decks,fisher-yates algorithm
+
+function shuffleDeck(array1){
+	for(let y=array1.length-1;y>0;y--){
+		const indexer = Math.floor(Math.random()*(y+1));
+		const placer = array1[y];
+		array1[y]=array1[indexer];
+		array1[indexer] =placer;
+
+	}
+}
+//function used to start a new game and generate a deck
+function startGame(){
+
+	// Used to shuffle deck once shuffle is implemented
+	// shuffleDeck(deck1);
+	// shuffleDeck(deck2);
+
+	//Reset All Game Conditions
+	P1Score=0;
+	P2Score=0;
+	P1CardCountHTML=deck1.length;
+	P2CardCountHTML=deck2.length;
+	
+	//initialize arrays that will keep track of card game
+	let deck1Play = [];
+	let deck2Play = [];
+
+	//copy deck 1 and deck 2 values
+	deck1Play =[...deck1];
+	deck2Play = [...deck2];
+
+	//shuffle decks
+	shuffleDeck(deck1Play);
+	shuffleDeck(deck2Play);
+
+	//used to store the card ids for the cards in a players deck for access, reinitialized
+	var deck1Ids =[];
+	var deck2Ids=[];
+
+
+	//untested feature
+	//remove lingering Children inside deck1Pile and deck2Pile
+	deck1Pile.innerHTML="";
+	deck2Pile.innerHTML="";
+
+
+
+	for(let i =0;i<deck1Play.length;i++){
+
+		//create new card element
+		const newCard1= document.createElement('div');
+		const newCard2= document.createElement('div');
+
+		//create new card value
+		let card1Value= deck1Play[i];
+		let card2Value= deck2Play[i];
+
+		//set the id for each individual card for css and js manipulation
+		newCard1.id = '1Pcard'+i;
+		newCard2.id = '2Pcard'+i;
+
+		//create the id for values of cards 1 and 2
+		let newCard1ValueId="1PCardValue"+i;
+		let newCard2ValueId="2PCardValue"+i;
+
+		//setting the HTML of newCard 1 and 2 ,specifically controlling for card value and card value id 
+		newCard1.innerHTML= "<div class='col-sm' id='card1' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player1' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card1Title'>Card 1</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='"+newCard1ValueId+"' style='width:10px;left:50%;text-align:center;'>"+card1Value+"</p> </div> </div></div></div>";
+		newCard2.innerHTML="<div class='col-sm' id='card2' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='"+newCard2ValueId+"' style='width:10px;left:50%;text-align:center;'>"+card2Value+"</p> </div> </div></div></div>";
+		
+		deck1Pile.appendChild(newCard1);
+		deck1Ids.push(newCard1.id);
+
+		deck2Pile.appendChild(newCard2);
+		deck2Ids.push(newCard2.id);
+	}
+	console.log(deck1Ids);
+	console.log(deck2Ids);
+}
+
+function playCard(){
+	console.log('to be implemented');
+}
 
 //function to generate the decks of both players
 function generateDecks(){
