@@ -141,6 +141,11 @@ function playCard(){
 	let P1CardHTML = document.getElementById(P1Card);
 	let P2CardHTML = document.getElementById(P2Card);
 
+	diagonalMove(P1CardHTML,P2CardHTML);
+
+
+
+
 	//removes first id of cards from the array
 	deck1Ids=deck1Ids.slice(1);
 	deck2Ids=deck2Ids.slice(1);
@@ -149,56 +154,56 @@ function playCard(){
 	deck1Play=deck1Play.slice(1);
 	deck2Play=deck2Play.slice(1);
 
-	console.log(deck1Ids)
+	
 	
 }
 
-//function to generate the decks of both players
-function generateDecks(){
-	for(let i =0;i<deck1.length;i++){
+// deprecatedfunction to generate the decks of both players
+// function generateDecks(){
+// 	for(let i =0;i<deck1.length;i++){
 		
-		//create new card element
-		const newCard1= document.createElement('div');
-		const newCard2= document.createElement('div');
+// 		//create new card element
+// 		const newCard1= document.createElement('div');
+// 		const newCard2= document.createElement('div');
 
-		//create new card value
-		let card1Value= deck1[i];
-		let card2Value= deck2[i];
+// 		//create new card value
+// 		let card1Value= deck1[i];
+// 		let card2Value= deck2[i];
 
-		// Setting the ID for card 1 and 2 in order to manipulate it in the future
-		newCard1.id = '1Pcard'+i;
-		newCard2.id = '2Pcard'+i;
+// 		// Setting the ID for card 1 and 2 in order to manipulate it in the future
+// 		newCard1.id = '1Pcard'+i;
+// 		newCard2.id = '2Pcard'+i;
 
-		//id for value selection
-		let newCard1ValueId="1PCardValue"+i;
-		let newCard2ValueId="2PCardValue"+i;
-		//setting the HTML of newCard 1 and 2 ,specifically controlling for card value and card value id 
-		newCard1.innerHTML= "<div class='col-sm' id='card1' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player1' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card1Title'>Card 1</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='"+newCard1ValueId+"' style='width:10px;left:50%;text-align:center;'>"+card1Value+"</p> </div> </div></div></div>";
-		newCard2.innerHTML="<div class='col-sm' id='card2' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='"+newCard2ValueId+"' style='width:10px;left:50%;text-align:center;'>"+card2Value+"</p> </div> </div></div></div>";
+// 		//id for value selection
+// 		let newCard1ValueId="1PCardValue"+i;
+// 		let newCard2ValueId="2PCardValue"+i;
+// 		//setting the HTML of newCard 1 and 2 ,specifically controlling for card value and card value id 
+// 		newCard1.innerHTML= "<div class='col-sm' id='card1' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player1' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card1Title'>Card 1</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='"+newCard1ValueId+"' style='width:10px;left:50%;text-align:center;'>"+card1Value+"</p> </div> </div></div></div>";
+// 		newCard2.innerHTML="<div class='col-sm' id='card2' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='"+newCard2ValueId+"' style='width:10px;left:50%;text-align:center;'>"+card2Value+"</p> </div> </div></div></div>";
 		
 	
-		//styling properties for card 1 
-		newCard1.style.position="absolute";
-		newCard1.style.display="inline";
-		newCard1.style.zIndex=zValueStart+i;
+// 		//styling properties for card 1 
+// 		newCard1.style.position="absolute";
+// 		newCard1.style.display="inline";
+// 		newCard1.style.zIndex=zValueStart+i;
 		
-		//styling properties for card 2
-		newCard2.style.position="absolute";
-		newCard2.style.display="inline";
-		newCard2.style.zIndex=zValueStart+i;
+// 		//styling properties for card 2
+// 		newCard2.style.position="absolute";
+// 		newCard2.style.display="inline";
+// 		newCard2.style.zIndex=zValueStart+i;
 		
 		
-		console.log("card1Value: "+card1Value );
-		//have to add value from array into card
+// 		console.log("card1Value: "+card1Value );
+// 		//have to add value from array into card
 
 
-		deck1Pile.appendChild(newCard1);
-		deck2Pile.appendChild(newCard2);
-		deck1Ids.push(newCard1.id);
-		deck2Ids.push(newCard2.id);
+// 		deck1Pile.appendChild(newCard1);
+// 		deck2Pile.appendChild(newCard2);
+// 		deck1Ids.push(newCard1.id);
+// 		deck2Ids.push(newCard2.id);
 
-	}
-}
+// 	}
+// }
 
 function score(){
 	//these two segments retrieve the index id from 
@@ -282,23 +287,15 @@ function score(){
 	
 }
 
-function diagonalMove(){
-	let card1id = deck1Ids[0];
-	let card2id = deck2Ids[0];
-	let card1 =document.getElementById(card1id);
-	let card2 =document.getElementById(card2id);
+function diagonalMove(card1,card2){
+	
 	let field1 =document.getElementById("P1Field");
 	let field2 =document.getElementById("P2Field");
 	field1.appendChild(card1);
 	field2.appendChild(card2);
 
-	console.log("deck1: "+deck1+", deck2: "+deck2);
 
-	//remove cards from deck1
-	deck1.pop();
-	//remove cards from deck2
-	deck2.pop();
-
+	
 
 	// Animation Code Disabled For Functionality
 	// let start = Date.now();
@@ -332,7 +329,7 @@ function diagonalMove(){
 	// 		clearInterval(timer);
 	// 	}
 	// },20);
-	index++;
+	
 	
 
 }
