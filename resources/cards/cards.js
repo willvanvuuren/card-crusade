@@ -135,15 +135,18 @@ function startGame(){
 
 function playCard(){
 	//select the first element of both player decks
-	let P1Card = deck1Ids[0];
-	let P2Card = deck2Ids[0];
+	let P1CardID = deck1Ids[0];
+	let P2CardID = deck2Ids[0];
 	
-	let P1CardHTML = document.getElementById(P1Card);
-	let P2CardHTML = document.getElementById(P2Card);
+	//used to select the HTML elements of the cards
+	let P1CardHTML = document.getElementById(P1CardID);
+	let P2CardHTML = document.getElementById(P2CardID);
 
+	//card to move cards from deck into play field
 	diagonalMove(P1CardHTML,P2CardHTML);
 
-
+	//use this to score the cards and move to deck
+	score(P1CardHTML,P2CardHTML);
 
 
 	//removes first id of cards from the array
@@ -205,30 +208,29 @@ function playCard(){
 // 	}
 // }
 
-function score(){
+function score(card1Id,card2Id){
 	//these two segments retrieve the index id from 
 	//since the index is increased everytime the score button is pressed, and continue increases index by 1, index-1 allows access to the proper indexed value since score is after continue
-	let card1ValueId = "1PCardValue"+(index-1);
-	let card2ValueId = "2PCardValue"+(index-1);
-	let card1id = '1Pcard'+(index-1);
-	let card2id = '2Pcard'+(index-1);
-	let card1 =document.getElementById(card1id);
-	let card2 =document.getElementById(card2id);
+	
+	let card1html =document.getElementById(card1Id);
+	let card2html =document.getElementById(card2Id);
 	let TieField =document.getElementById("TieField");
 
-	card1Value= document.getElementById(card1ValueId).innerText;
-	card2Value= document.getElementById(card2ValueId).innerText;
+	card1Value= deck1Play[0];
+	card2Value= deck2Play[0];
 
 	
 	
 
 	if(card1Value>card2Value){
 		P1Score++;
-		document.getElementById("P1Score").innerText = P1Score;
-		document.getElementById('winner').innerText = "P1 Wins!";
-		deck1Pile.appendChild(card1);
-		deck1Pile.appendChild(card2);
-		deck1.push(card1Value,card2Value);
+		P1ScoreHTML.innerText = P1Score;
+		WinnerHTML.innerText = "P1 Wins!";
+		deck1Pile.appendChild(card1html);
+		deck1Pile.appendChild(card2html);
+		deck1Play.push(card1Value,card2Value);
+		deck1Ids.push(card1Id,card2Id);
+
 		if(TiePile.length >0){
 	
 			for(let t=TiePile.length-1;t>=0;t--){
@@ -243,6 +245,7 @@ function score(){
 		}
 
 	}
+
 	else if(card1Value<card2Value){
 		P2Score++;
 		document.getElementById("P2Score").innerText = P2Score;
