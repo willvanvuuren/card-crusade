@@ -134,6 +134,12 @@ app.get('/home', (req,res) => {
   res.render("pages/home");
 });
 
+app.get("/game", (req, res) => {
+  //req.session.destroy();
+  //add Logged out Successfully message 
+  res.render("pages/game");
+}); 
+
 
 app.get('/profile', async(req, res) =>{
   //username = "Geri"; //need to read this in from login
