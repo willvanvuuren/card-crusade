@@ -145,6 +145,8 @@ function startGame(){
 
 function playCard(){
 	//check for game end condition
+	P1CardCountHTML.innerText="Cards Left: "+deck1Play.length;
+	P2CardCountHTML.innerText="Cards Left: "+deck2Play.length;
 	if(deck1Play.length===0 ||deck2Play.length===0 ){
 		let P1Score = document.getElementById("P1Score").innerText;
 		let P2Score = document.getElementById("P2Score").innerText;
