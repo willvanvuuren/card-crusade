@@ -20,8 +20,8 @@ var P1Score =0;
 var P2Score =0;
 
 //global values for decks, decks should be shuffled
-var deck1 =[9,9,9];
-var deck2 =[9,9,10];
+var deck1 =[1,2,3];
+var deck2 =[1,2,3];
 
 //global var to keep track of the ids for the cards in the tie pile
 var TiePile =[];
@@ -145,7 +145,7 @@ function startGame(){
 
 function playCard(){
 	//check for game end condition
-	if(deck1Play.length===0 ||deck2Play.length===0){
+	if(deck1Play.length===0 ||deck2Play.length===0 ){
 		let P1Score = document.getElementById("P1Score").innerText;
 		let P2Score = document.getElementById("P2Score").innerText;
 		console.log(P1Score+" "+P2Score)
