@@ -42,6 +42,13 @@ var WinnerHTML = document.getElementById("winner");
 var deck1Play = [];
 var deck2Play = [];
 
+//global variable to store old values of cards and cardIDs, this will be used primarily for 
+var oldCardID=[]
+var oldCardValue=[]
+
+//global variable to store round 
+var round = 0;
+
 //Who Won Flag ,0=tie, 1=1P,2=2P,-1 =starting game
 var whoWonLastRound = -1;
 //slightly deprecated but used to keep track of the html values of the cards
@@ -137,31 +144,62 @@ function startGame(){
 }
 
 function playCard(){
-	//select the first element of both player decks
-	let P1CardID = deck1Ids[0];
-	let P2CardID = deck2Ids[0];
-	
-	//used to select the HTML elements of the cards
-	let P1CardHTML = document.getElementById(P1CardID);
-	let P2CardHTML = document.getElementById(P2CardID);
+	//check for game end condition
+	if(deck1Play.length===0 ||deck2Play.length===0){
+		let P1Score = document.getElementById("P1Score").innerText;
+		let P2Score = document.getElementById("P2Score").innerText;
+		console.log(P1Score+" "+P2Score)
+		if(P1Score>P2Score){
+			document.getElementById('winner').innerText = "P1 Wins the game!";
+		}else if(P2Score>P1Score){
+			document.getElementById('winner').innerText = "P2 Wins the game!";
+		}else{
+			document.getElementById('winner').innerText = "It's a final tie!";
+		}
 
-	//card to move cards from deck into play field
-	diagonalMove(P1CardHTML,P2CardHTML,P1CardID,P2CardID);
+	}
+	//handles the case where game does not end
+	else{
 
-	//use this to score the cards and move to deck
-	score(P1CardID,P2CardID);
+		if(round>0){
 
+			fieldToNext(oldCardID[0],oldCardID[1],oldCardValue[0],oldCardValue[1]);
+			oldCardID= oldCardID.slice(1);
+			oldCardID= oldCardID.slice(1);
+			oldCardValue=oldCardValue.slice(1);
+			oldCardValue=oldCardValue.slice(1);
+		}
+			//select the first element of both player decks
 
-	//removes first id of cards from the array
-	deck1Ids=deck1Ids.slice(1);
-	deck2Ids=deck2Ids.slice(1);
-	
-	//removes first value of cards from the array
-	deck1Play=deck1Play.slice(1);
-	deck2Play=deck2Play.slice(1);
+			let P1CardID = deck1Ids[0];
+			let P2CardID = deck2Ids[0];
+			
+			//used to select the HTML elements of the cards
+			let P1CardHTML = document.getElementById(P1CardID);
+			let P2CardHTML = document.getElementById(P2CardID);
 
-	
-	
+			//card to move cards from deck into play field
+			deckToField(P1CardHTML,P2CardHTML,P1CardID,P2CardID);
+
+			//use this to score the cards and move to deck
+			score(P1CardID,P2CardID);
+
+			P1CardHTML.style.position = 'absolute';
+			P1CardHTML.style.position = 'inline';
+			P2CardHTML.style.position = 'absolute';
+			P2CardHTML.style.position = 'inline';
+			//removes first id of cards from the array
+			deck1Ids=deck1Ids.slice(1);
+			deck2Ids=deck2Ids.slice(1);
+			
+			//removes first value of cards from the array
+			deck1Play=deck1Play.slice(1);
+			deck2Play=deck2Play.slice(1);
+			round++;
+			console.log(deck1Play);
+			console.log(deck2Play);
+			
+			}
 }
 
 // deprecatedfunction to generate the decks of both players
@@ -212,22 +250,24 @@ function playCard(){
 // }
 
 function score(card1Id,card2Id){
-	//these two segments retrieve the index id from 
-	//since the index is increased everytime the score button is pressed, and continue increases index by 1, index-1 allows access to the proper indexed value since score is after continue
 	
+	//retrieves HTML elements for cards
 	let card1html =document.getElementById(card1Id);
 	let card2html =document.getElementById(card2Id);
 	let TieField =document.getElementById("TieField");
 
+	//retrieves first element of deck values for comparison
 	card1Value= deck1Play[0];
 	card2Value= deck2Play[0];
 
-	
+	//P1 Win conditions
 	if(card1Value>card2Value){
 		P1Score++;
 		P1ScoreHTML.innerText = P1Score;
 		WinnerHTML.innerText = "P1 Wins!";
 		whoWonLastRound=1;
+		oldCardValue.push(card1Value,card2Value);
+		oldCardID.push(card1Id,card2Id);
 		if(TiePile.length >0){
 	
 			for(let t=TiePile.length-1;t>=0;t--){
@@ -242,7 +282,7 @@ function score(card1Id,card2Id){
 		}
 
 	}
-
+	//P2 Win Conditions
 	else if(card1Value<card2Value){
 		P2Score++;
 		document.getElementById("P2Score").innerText = P2Score;
@@ -263,6 +303,7 @@ function score(card1Id,card2Id){
 	
 		}
 	}
+	//Tie Conditions
 	else if(card1Value===card2Value){
 		document.getElementById('winner').innerText = "It's a tie!";
 		
@@ -273,31 +314,15 @@ function score(card1Id,card2Id){
 		TiePileValues.push(card1Value,card2Value);
 		
 	}
-	if(deck1.length===0 ||deck2.length===0){
-		let P1Score = document.getElementById("P1Score");
-		let P2Score = document.getElementById("P2Score");
-		if(P1Score>P2Score){
-			document.getElementById('winner').innerText = "P1 Wins the game!";
-		}else if(P2Score>P1Score){
-			document.getElementById('winner').innerText = "P2 Wins the game!";
-		}else{
-			document.getElementById('winner').innerText = "It's a final tie!";
-		}
-	}
+	console.log(deck1Play.length);
+	console.log(deck2Play.length);
+	
 	
 }
 
-function diagonalMove(card1,card2,card1Id,card2Id){
+function deckToField(card1,card2,card1Id,card2Id){
 	
-	if(whoWonLastRound===1){
-		// deck1Pile.appendChild(card1);
-		// deck1Pile.appendChild(card2);
-		// deck1Play.push(card1Value,card2Value);
-		// deck1Ids.push(card1Id,card2Id);
 
-	}else if(whoWonLastRound===2){
-		
-	}
 	let field1 =document.getElementById("P1Field");
 	let field2 =document.getElementById("P2Field");
 	field1.appendChild(card1);
@@ -343,4 +368,23 @@ function diagonalMove(card1,card2,card1Id,card2Id){
 
 }
 
+function fieldToNext(card1ID,card2ID,card1Valued,card2Valued){
+		let card1Temp = document.getElementById(card1ID);
+		let card2Temp = document.getElementById(card2ID);
+
+		if(whoWonLastRound===1){
+			deck1Pile.appendChild(card1Temp);
+			deck1Pile.appendChild(card2Temp);
+			deck1Play.push(card1Valued,card2Valued);
+			deck1Ids.push(card1ID,card2ID);
+
+	}else if(whoWonLastRound===2){
+			deck2Pile.appendChild(card1);
+			deck2Pile.appendChild(card2);
+			deck2Play.push(card1Value,card2Value);
+			deck2Ids.push(card1Id,card2Id);
+	} else if(whoWonLastRound===0){
+
+	}
+}
 
