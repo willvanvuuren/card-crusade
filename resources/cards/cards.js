@@ -21,7 +21,7 @@ var P2Score =0;
 
 //global values for decks, decks should be shuffled
 var deck1 =[9,9,9];
-var deck2 =[0,5,7];
+var deck2 =[9,9,10];
 
 //global var to keep track of the ids for the cards in the tie pile
 var TiePile =[];
@@ -277,6 +277,7 @@ function score(card1Id,card2Id){
 				deck1Pile.appendChild(tieCard);
 				deck1.push(TiePileValues[t]);
 				TiePile.pop();
+				TiePileValue.pop();
 			}
 	
 		}
@@ -299,6 +300,7 @@ function score(card1Id,card2Id){
 				deck2Pile.appendChild(tieCard);
 				deck2.push(TiePileValues[t]);
 				TiePile.pop();
+				TiePileValues.pop();
 			}
 	
 		}
@@ -307,10 +309,10 @@ function score(card1Id,card2Id){
 	else if(card1Value===card2Value){
 		document.getElementById('winner').innerText = "It's a tie!";
 		
-		TieField.appendChild(card1);
-		TieField.appendChild(card2);
-		TiePile.push(card1id);
-		TiePile.push(card2id);
+		TieField.appendChild(card1html);
+		TieField.appendChild(card2html);
+		TiePile.push(card1Id);
+		TiePile.push(card2Id);
 		TiePileValues.push(card1Value,card2Value);
 		
 	}
@@ -379,12 +381,10 @@ function fieldToNext(card1ID,card2ID,card1Valued,card2Valued){
 			deck1Ids.push(card1ID,card2ID);
 
 	}else if(whoWonLastRound===2){
-			deck2Pile.appendChild(card1);
-			deck2Pile.appendChild(card2);
-			deck2Play.push(card1Value,card2Value);
-			deck2Ids.push(card1Id,card2Id);
-	} else if(whoWonLastRound===0){
-
-	}
+			deck2Pile.appendChild(card1Temp);
+			deck2Pile.appendChild(card2Temp);
+			deck2Play.push(card1Valued,card2Valued);
+			deck2Ids.push(card1ID,card2ID);
+	} 
 }
 
