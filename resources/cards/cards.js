@@ -42,6 +42,8 @@ var WinnerHTML = document.getElementById("winner");
 var deck1Play = [];
 var deck2Play = [];
 
+//Who Won Flag ,0=tie, 1=1P,2=2P,-1 =starting game
+var whoWonLastRound = -1;
 //slightly deprecated but used to keep track of the html values of the cards
 // var html1 = "<div class='col-sm' id='card1' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Card1' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
 // var html2 = "<div class='col-sm' id='card2' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
@@ -66,9 +68,10 @@ function startGame(){
 	// shuffleDeck(deck1);
 	// shuffleDeck(deck2);
 
-	//Reset All Game Conditions
+	//Reset Game Score and WhoWonFlag
 	P1Score=0;
 	P2Score=0;
+	whoWonLastRound = -1;
 	P1CardCountHTML.innerText="Cards Left: "+deck1.length;
 	P2CardCountHTML.innerText="Cards Left: "+deck2.length;
 	
@@ -143,19 +146,13 @@ function playCard(){
 	let P2CardHTML = document.getElementById(P2CardID);
 
 	//card to move cards from deck into play field
-	diagonalMove(P1CardHTML,P2CardHTML);
+	diagonalMove(P1CardHTML,P2CardHTML,P1CardID,P2CardID);
 
 	//use this to score the cards and move to deck
 	score(P1CardID,P2CardID);
 
 
-	//removes first id of cards from the array
-	deck1Ids=deck1Ids.slice(1);
-	deck2Ids=deck2Ids.slice(1);
 	
-	//removes first value of cards from the array
-	deck1Play=deck1Play.slice(1);
-	deck2Play=deck2Play.slice(1);
 
 	
 	
@@ -224,11 +221,7 @@ function score(card1Id,card2Id){
 		P1Score++;
 		P1ScoreHTML.innerText = P1Score;
 		WinnerHTML.innerText = "P1 Wins!";
-		deck1Pile.appendChild(card1html);
-		deck1Pile.appendChild(card2html);
-		deck1Play.push(card1Value,card2Value);
-		deck1Ids.push(card1Id,card2Id);
-
+		whoWonLastRound=1;
 		if(TiePile.length >0){
 	
 			for(let t=TiePile.length-1;t>=0;t--){
@@ -288,8 +281,17 @@ function score(card1Id,card2Id){
 	
 }
 
-function diagonalMove(card1,card2){
-	
+function diagonalMove(oldcard1,oldcard2,oldcard1Id,oldcard2Id){
+	console.log(whoWonLastRound);
+	if(whoWonLastRound===1){
+		deck1Pile.appendChild(card1);
+		deck1Pile.appendChild(card2);
+		deck1Play.push(card1Value,card2Value);
+		deck1Ids.push(card1Id,card2Id);
+
+	}else if(whoWonLastRound===2){
+		console.log('to be implemented')
+	}
 	let field1 =document.getElementById("P1Field");
 	let field2 =document.getElementById("P2Field");
 	field1.appendChild(card1);
