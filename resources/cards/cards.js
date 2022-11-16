@@ -152,7 +152,13 @@ function playCard(){
 	score(P1CardID,P2CardID);
 
 
+	//removes first id of cards from the array
+	deck1Ids=deck1Ids.slice(1);
+	deck2Ids=deck2Ids.slice(1);
 	
+	//removes first value of cards from the array
+	deck1Play=deck1Play.slice(1);
+	deck2Play=deck2Play.slice(1);
 
 	
 	
@@ -281,16 +287,16 @@ function score(card1Id,card2Id){
 	
 }
 
-function diagonalMove(oldcard1,oldcard2,oldcard1Id,oldcard2Id){
-	console.log(whoWonLastRound);
+function diagonalMove(card1,card2,card1Id,card2Id){
+	
 	if(whoWonLastRound===1){
-		deck1Pile.appendChild(card1);
-		deck1Pile.appendChild(card2);
-		deck1Play.push(card1Value,card2Value);
-		deck1Ids.push(card1Id,card2Id);
+		// deck1Pile.appendChild(card1);
+		// deck1Pile.appendChild(card2);
+		// deck1Play.push(card1Value,card2Value);
+		// deck1Ids.push(card1Id,card2Id);
 
 	}else if(whoWonLastRound===2){
-		console.log('to be implemented')
+		
 	}
 	let field1 =document.getElementById("P1Field");
 	let field2 =document.getElementById("P2Field");
