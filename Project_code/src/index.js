@@ -60,7 +60,7 @@ app.use(
   icon: undefined,
 };
 
-user.username="Janek"; //need to set this at login, used to update username/password in profile
+//user.username="Janek"; //need to set this at login, used to update username/password in profile
 
 
 app.get('/login', (req,res) => {
