@@ -39,6 +39,7 @@ app.use(
       secret: process.env.SESSION_SECRET,
       saveUninitialized: false,
       resave: false,
+
     })
   );
     
@@ -129,6 +130,15 @@ app.get('/', (req,res) => {
 app.listen(3000);
 console.log('Server is listening on port 3000');
 
+app.get('/home', (req,res) => {
+  res.render("pages/home");
+});
+
+app.get("/game", (req, res) => {
+  //req.session.destroy();
+  //add Logged out Successfully message 
+  res.render("pages/game");
+}); 
 
 
 app.get('/profile', async(req, res) =>{
@@ -150,6 +160,7 @@ app.get('/profile', async(req, res) =>{
         error: true,
         message: 'Error'
       })
+
       });
   });
 
@@ -220,6 +231,11 @@ app.get('/profile', async(req, res) =>{
 
   });
 
+  app.get("/logout", (req, res) => {
+    //req.session.destroy();
+    //add Logged out Successfully message 
+    res.render("pages/logout");
+  }); 
 
 
 

@@ -1,4 +1,6 @@
-<%- include ('../partials/header') %> <%- include ('../partials/navbarlogin') %>
+
+<%- include ('../partials/header') %><%- include ('../partials/navbarlogin') %>
+
 
 <main>
     </br>
@@ -7,6 +9,7 @@
             Register an account
         </h1>
     </br>
+
       <form name="register" action="/register" method="POST">
           <div class="form-group">
             <label for="email">Email</label>
@@ -19,6 +22,7 @@
           <div class="form-group">
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" name="password" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&;])[A-Za-z\d@$!%*?&;{8,}$">
+
             <small id="passwordHelp" class="form-text text-muted">Must contain at least 8 characters, one capital letter, one special character, and one number
             </small>
           </div>

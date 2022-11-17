@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+ <!-- Bootstrap CSS -->
+ <link
+	  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	  rel="stylesheet"
+	  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+	  crossorigin="anonymous"
+	/>
+
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<link rel="stylesheet" href="cards.css">
+
+<!-- Bootstrap CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+/>
+
+</head>
+<body>
+
+<h1>Card Animation Testing</h1>
+<button id="button" onclick="score()">Score Cards</button>
+<button id="button" onclick="generateDecks()">Generate Cards</button>
+<button id="button" onclick="diagonalMove()">Continue Game (Diagonal Transition atm)</button>
+<button id="button" onclick="startGame()">Start Game</button>
+<button id="button" onclick="playCard()">Play Card</button>
+
+<div class="container "> 
+  <div class="row" style="text-align: center;">
+  	<h2 >Score</h2>
+  	<div class ='col-sm'>
+  		<p id="P1Score" style>0 </p>
+  	</div>
+  	<div class ='col-sm'>
+  		<p id="P1Score" style>- </p>
+  	</div>
+  	<div class ='col-sm'>
+  		<p id="P2Score" style>0</p>
+  	</div>
+  </div>
+  <div class="row" style="text-align: center;">
+  	<p id ="winner"></p>
+  </div>
+
+	<div class="row ">
+		
+		<!-- Empty Space -->
+		<div id ="P1Field" class="col-sm border">
+			<p>P1 Card</p>
+			<p id='deck1Cards'>Cards Left: </p>
+
+		</div>
+		<div id ="TieField" class ="col-sm border">
+			<p>Tie Pile</p>
+		</div>
+		<div id ="P2Field" class="col-sm border">
+			<p>P2 Card</p>
+			<p id='deck2Cards'>Cards Left:</p>
+		</div>
+
+	</div>
+
+	<div class="row gx-5">
+		<div class="col-sm" id = "Deck1">
+		</div>
+
+		<div class="col-sm" id = "Deck2">
+			
+		</div>
+	</div>
+
+</div>
+<script src='cards.js'></script> 
+
+</body>
+</html>
