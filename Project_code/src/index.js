@@ -61,6 +61,10 @@ app.use(
 
 user.username="Janek"; //need to set this at login, used to update username/password in profile
 
+app.get('/home', (req, res) => {
+  res.render(pages/home)
+});
+
 
 app.get('/login', (req,res) => {
   res.render("pages/login");
