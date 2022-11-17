@@ -1,13 +1,12 @@
 
 <!-- include header and navbar -->
-<%- include ('../partials/header') %> <%- include ('../partials/navbarlogin') %>
+<%- include ('../partials/header') %> <%- include ('../partials/navbargame') %>
 
 <main>
   <!-- including bootstrap here for formatting  -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
   <div class="container">
-
 
     <% if (locals.message) { %>
       <div
@@ -17,7 +16,7 @@
         <%= message %>
       </div>
     <% } %>
- 
+
 
     <h3>Welcome User : <%= username %></h3>
 
@@ -36,6 +35,7 @@
                   <% data.forEach(el => { %>
                     <tr>
                       <td><%=el.username%></td>
+                      
                       <td><%=el.rank%></td>
                     </tr>
                   <%})%>
@@ -78,8 +78,6 @@
           </div>
         </div>
       </div>
-
-      
 
       <div class="col">
         <div class="card" style="width: 16rem;">
@@ -215,8 +213,7 @@
 
           </div>
         </div>
-
-      
+ 
     </div>
   </div>
 
