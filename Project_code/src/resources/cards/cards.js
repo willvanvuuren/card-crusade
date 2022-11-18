@@ -36,7 +36,7 @@ var P2CardCountHTML = document.getElementById('deck2Cards');
 //html elements for score count
 var P1ScoreHTML = document.getElementById("P1Score");
 var P2ScoreHTML = document.getElementById("P2Score");
-var WinnerHTML = document.getElementById("winner");
+var nerHTML = document.getElementById("ner");
 
 //initialize arrays that will keep track of card game
 var deck1Play = [];
@@ -152,11 +152,11 @@ function playCard(){
 		let P2Score = document.getElementById("P2Score").innerText;
 		console.log(P1Score+" "+P2Score)
 		if(P1Score>P2Score){
-			document.getElementById('winner').innerText = "P1 Wins the game!";
+			document.getElementById('ner').innerText = "P1 s the game!";
 		}else if(P2Score>P1Score){
-			document.getElementById('winner').innerText = "P2 Wins the game!";
+			document.getElementById('ner').innerText = "P2 s the game!";
 		}else{
-			document.getElementById('winner').innerText = "It's a final tie!";
+			document.getElementById('ner').innerText = "It's a final tie!";
 		}
 
 	}
@@ -262,11 +262,11 @@ function score(card1Id,card2Id){
 	card1Value= deck1Play[0];
 	card2Value= deck2Play[0];
 
-	//P1 Win conditions
+	//P1  conditions
 	if(card1Value>card2Value){
 		P1Score++;
 		P1ScoreHTML.innerText = P1Score;
-		WinnerHTML.innerText = "P1 Wins!";
+		nerHTML.innerText = "P1 s!";
 		whoWonLastRound=1;
 		oldCardValue.push(card1Value,card2Value);
 		oldCardID.push(card1Id,card2Id);
@@ -285,11 +285,11 @@ function score(card1Id,card2Id){
 		}
 
 	}
-	//P2 Win Conditions
+	//P2  Conditions
 	else if(card1Value<card2Value){
 		P2Score++;
 		P2ScoreHTML.innerText = P2Score;
-		WinnerHTML.innerText = "P2 Wins!";
+		nerHTML.innerText = "P2 s!";
 		whoWonLastRound=2;
 		oldCardValue.push(card1Value,card2Value);
 		oldCardID.push(card1Id,card2Id);
@@ -309,7 +309,7 @@ function score(card1Id,card2Id){
 	}
 	//Tie Conditions
 	else if(card1Value===card2Value){
-		document.getElementById('winner').innerText = "It's a tie!";
+		document.getElementById('ner').innerText = "It's a tie!";
 		
 		TieField.appendChild(card1html);
 		TieField.appendChild(card2html);
