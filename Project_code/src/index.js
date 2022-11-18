@@ -248,7 +248,7 @@ app.get('/profile', async(req, res) =>{
   });
 
   app.get("/logout", (req, res) => {
-    //req.session.destroy();
+    req.session.destroy();
     //add Logged out Successfully message 
     res.render("pages/logout");
   }); 
