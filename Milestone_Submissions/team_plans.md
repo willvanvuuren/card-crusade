@@ -29,3 +29,6 @@
 *   Task [#8](https://github.com/willvanvuuren/card-crusade/issues/8)
 *   Task [#26](https://github.com/willvanvuuren/card-crusade/issues/26)
 *   Task [#27](https://github.com/willvanvuuren/card-crusade/issues/27)
+
+### Plan for Week 11/21-11/25
+We need to complete the game board layout and then fix some bugs related to the game. 
