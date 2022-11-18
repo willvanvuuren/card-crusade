@@ -73,15 +73,31 @@ app.get('/register', (req,res) => {
 
 app.post('/register', async (req, res) => {
   const hash = await bcrypt.hash(req.body.password, 10);
-  
-  var query = 'INSERT INTO users (username, email, password, wins, losses) VALUES ($1, $2, $3, $4, $5);';
-  db.any(query, [req.body.username, req.body.email, hash, 0, 0])
+  var query = 'SELECT username FROM users WHERE username=$1;';
+  db.any(query, [req.body.username])
   .then(function (rows) {
-      res.redirect('/login');
+    if (rows.length != 0){
+      console.log('Duplicate username');
+      throw new Error('This username is already taken');
+    }
+    else {
+      var query = 'INSERT INTO users (username, email, password, wins, losses) VALUES ($1, $2, $3, $4, $5);';
+      db.any(query, [req.body.username, req.body.email, hash, 0, 0])
+      .then(function (rows) {
+          res.redirect('/login');
+      }
+     )
+      .catch(function (err) {
+          res.redirect('/register');
+      })
+    }
   })
   .catch(function (err) {
-      res.redirect('/register');
-  })
+    res.render("pages/register", {
+      error: true,
+      message: err
+    })
+  });
 });
 
 app.post('/login', async (req,res) => {
