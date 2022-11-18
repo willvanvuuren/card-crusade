@@ -39,6 +39,7 @@ app.use(
       secret: process.env.SESSION_SECRET,
       saveUninitialized: false,
       resave: false,
+
     })
   );
     
@@ -59,7 +60,7 @@ app.use(
   icon: undefined,
 };
 
-user.username="Janek"; //need to set this at login, used to update username/password in profile
+//user.username="Janek"; //need to set this at login, used to update username/password in profile
 
 
 app.get('/login', (req,res) => {
@@ -72,15 +73,31 @@ app.get('/register', (req,res) => {
 
 app.post('/register', async (req, res) => {
   const hash = await bcrypt.hash(req.body.password, 10);
-  
-  var query = 'INSERT INTO users (username, email, password, wins, losses) VALUES ($1, $2, $3, $4, $5);';
-  db.any(query, [req.body.username, req.body.email, hash, 0, 0])
+  var query = 'SELECT username FROM users WHERE username=$1;';
+  db.any(query, [req.body.username])
   .then(function (rows) {
-      res.redirect('/login');
+    if (rows.length != 0){
+      console.log('Duplicate username');
+      throw new Error('This username is already taken');
+    }
+    else {
+      var query = 'INSERT INTO users (username, email, password, wins, losses) VALUES ($1, $2, $3, $4, $5);';
+      db.any(query, [req.body.username, req.body.email, hash, 0, 0])
+      .then(function (rows) {
+          res.redirect('/login');
+      }
+     )
+      .catch(function (err) {
+          res.redirect('/register');
+      })
+    }
   })
   .catch(function (err) {
-      res.redirect('/register');
-  })
+    res.render("pages/register", {
+      error: true,
+      message: err
+    })
+  });
 });
 
 app.post('/login', async (req,res) => {
@@ -129,6 +146,15 @@ app.get('/', (req,res) => {
 app.listen(3000);
 console.log('Server is listening on port 3000');
 
+app.get('/home', (req,res) => {
+  res.render("pages/home");
+});
+
+app.get("/game", (req, res) => {
+  //req.session.destroy();
+  //add Logged out Successfully message 
+  res.render("pages/game");
+}); 
 
 
 app.get('/profile', async(req, res) =>{
@@ -150,6 +176,7 @@ app.get('/profile', async(req, res) =>{
         error: true,
         message: 'Error'
       })
+
       });
   });
 
@@ -220,6 +247,11 @@ app.get('/profile', async(req, res) =>{
 
   });
 
+  app.get("/logout", (req, res) => {
+    req.session.destroy();
+    //add Logged out Successfully message 
+    res.render("pages/logout");
+  }); 
 
 
 
