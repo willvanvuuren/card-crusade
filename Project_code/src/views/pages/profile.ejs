@@ -1,9 +1,8 @@
 <!-- include header and navbar -->
 <%- include ('../partials/header') %> <%- include ('../partials/navbargame') %>
-<<<<<<< HEAD
 
 <main>
-=======
+
 <head>
   <style>
     body {
@@ -13,7 +12,7 @@
   </style>
 </head>
 <body>
->>>>>>> main
+
   <!-- including bootstrap here for formatting  -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
@@ -35,10 +34,9 @@
 
   <div class="container">
 
-<<<<<<< HEAD
-=======
+
   </br>
->>>>>>> main
+
     <% if (locals.message) { %>
       <div
         class="alert alert-<%- locals.error ? 'danger' : 'success' %>"
@@ -47,12 +45,7 @@
         <%= message %>
       </div>
     <% } %>
-<<<<<<< HEAD
 
-
-=======
- 
->>>>>>> main
     <h3>Welcome User : <%= username %></h3>
 
     <div class="row">
@@ -71,16 +64,13 @@
                   <% data.forEach(function(el, i)  { %>
                     <tr>
                       <td><%=el.username%></td>
-<<<<<<< HEAD
+
                       <td><%=i+1%></td>
-=======
-<<<<<<< HEAD
                       
                       <td><%=el.rank%></td>
-=======
+
                       <td><%=i+1%></td>
->>>>>>> main
->>>>>>> 3a176f5c23e42a6aa233e224456de464387959b8
+
                     </tr>
                   <%})%>
                 </tbody>
