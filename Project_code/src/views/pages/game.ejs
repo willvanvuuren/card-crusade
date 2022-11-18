@@ -23,7 +23,7 @@
             <style>
                 body {
                     font-family: system-ui;
-                    background-color: #b1060f;
+                    background-color: #282828;
                 }
 
                 .container {
@@ -34,6 +34,11 @@
 
                 }
 
+                .row {
+                    background-color:#155843;
+                    color: white;
+                }
+                
 
                 /* The Modal (background) */
                 .modal {
@@ -57,13 +62,23 @@
 
                 /* Modal Content */
                 .modal-content {
-                    background-color: #e80915;
+                    background-color: #155843;
                     color: white;
                     margin: auto;
                     padding: 20px;
                     border: 1px solid #888;
                     width: 80%;
 
+                }
+
+                h1 {
+                    color: white;
+                    text-align: center;
+                }
+
+                .btn-danger {
+                    background-color:#941C2F;
+                    outline: white;
                 }
 
                 .footer {
@@ -73,6 +88,7 @@
 
                 }
 
+                
                 .flip-box {
                     background-color: transparent;
                     width: 150px;
@@ -120,7 +136,7 @@
                     bottom: 10px;
                     height: 250px;
                     width: 150px;
-                    background: gray;
+                    background: red;
                     z-index: -52;
                 }
 
@@ -140,35 +156,44 @@
         <body>
             <!-- The Modal -->
             <div id="myModal" class="modal">
+                <div class="modal-dialog modal-lg">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <!--Content-->
+                        <div class="container" style="text-transform:uppercase; font-weight: 800; font-size:xx-large; ">
+                            Get ready <%= user.username %>
+                        </div>
+                        <div class="container" style="margin-top: 25px; margin-bottom: 40px;">
+                            <h2 style="margin-top: 20px; font-weight: 800">The Goal </h2>
+                            <p>The goal is to be the player that has won the most cards at the end of the game.</p>
+                            <h2 style="margin-top: 40px; font-weight: 800">The Deal</h2>
+                            <p style="margin-bottom: 50px">The deck is divided evenly, with each player receiving 26 cards, dealt one at a time, face down. Each player turns up a card and the player with the higher card takes both cards and puts them on the bottom of his stack. If the cards are the same rank, it is War. Each player turns up one card face down and one card face up. The player with the higher cards takes both piles (six cards). If the turned-up cards are again the same rank, each player places another card face down and turns another card face up. The player with the higher card takes all 10 cards, and so on. The game ends when the deck runs out of cards (26 rounds).</p>
+                        </div>
+                        <div class="footer">
+                            <button type="button" id="but" class="fill" onclick="startGame()" data-dismiss="modal" style="top: 585px;">
+                                Start Game!
+                            </button>
 
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <!--Content-->
-                    <div class="container" style="text-transform:uppercase; font-weight: 800; font-size:larger; ">
-                        Get ready <%= user.username %>
-                    </div>
-                    <div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-                        You are about to enter the battle field! Here's how it works...
-
-                    </div>
-                    <div class="footer">
-                        <button type="button" id="but" class="fill" data-dismiss="modal" style="top: 75%;">
-                            Start Game!
-                        </button>
-
+                        </div>
                     </div>
                 </div>
             </div> <!-- The Modal -->
+        </br>
             <h1>Card Animation Testing</h1>
-            <button id="button" onclick="score()">Score Cards</button>
-            <button id="button" onclick="generateDecks()">Generate Cards</button>
-            <button id="button" onclick="diagonalMove()">Continue Game (Diagonal Transition atm)</button>
-            <button id="button" onclick="startGame()">Start Game</button>
-            <button id="button" onclick="playCard()">Play Card</button>
-
-            <div class="container ">
+        </br>
+        <div class="text-center">
+            <button class="btn btn-danger" id="button" onclick="score()">Score Cards</button>
+            <button class="btn btn-danger" id="button" onclick="generateDecks()">Generate Cards</button>
+            <button class="btn btn-danger" id="button" onclick="diagonalMove()">Continue Game (Diagonal Transition atm)</button>
+            <button class="btn btn-danger" id="button" onclick="startGame()">Start Game</button>
+            <button class="btn btn-danger" id="button" onclick="playCard()">Play Card</button>
+        </div>
+        </br>
+            <div class="container">
                 <div class="row" style="text-align: center;">
-                    <h2>Score</h2>
+                </br>
+                    <h2 style="margin-top: 20px">Score</h2>
+
                     <div class='col-sm'>
                         <p id="P1Score" style>0 </p>
                     </div>

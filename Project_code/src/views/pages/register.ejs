@@ -4,6 +4,16 @@
 
 <main>
     </br>
+    <div class="col-sm">
+      <% if (locals.message) { %>
+        <div
+          class="alert alert-<%- locals.error ? 'danger' : 'success' %>"
+          role="alert"
+        >
+          <%= message %>
+        </div>
+      <% } %>
+    </div>
     <div class="container">
         <h1>
             Register an account
