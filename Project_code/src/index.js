@@ -235,6 +235,7 @@ app.get('/profile', async(req, res) =>{
     RETURNING *`;
     db.any(query, [req.body.selectpicker, user.username])
       .then(()=>{
+        user.icon = req.body.selectpicker;
         res.redirect('/profile');
     })
       .catch( () =>{

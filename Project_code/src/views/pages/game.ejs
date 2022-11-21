@@ -56,11 +56,11 @@
 
                 /* Modal Content */
                 .modal-content {
-                    background-color: #155843;
+                    background-color: #104547;
                     color: white;
                     margin: auto;
                     padding: 20px;
-                    border: 1px solid #888;
+                    border: 1px solid #21A0A0;
                     width: 80%;
 
                 }
@@ -273,8 +273,9 @@
             <div id="TieField" class="container"
                 style="width: 250px; height: 350px; right: 50%; border-color: #d1000a; background-color: #e80915; color: white;">
                 <p>Tie Pile</p>
+                <div style="position: absolute; bottom: 25%; right: 57.5%;"><button id="but" style="width: 300px; height:100px" class="fill" onclick="playCard()">Play Card</button></div>
             </div>
-            <div style="position: absolute; bottom: 25%; right:60%;"><button id="but" style="width: 300px; height:100px" class="fill" onclick="playCard()">Play Card</button></div>
+            
                 
             
 
@@ -298,7 +299,7 @@
             </div>
             <!--Icon containers-->
             <div class="container" style="width:250px; height:200px; position: absolute; right: 3%; bottom: 400px;">
-               <a><img  src=<%= user.icon %> alt="users icon"></a> 
+               <img style="width:200px; height:200px;" src=<%= user.icon %> alt="users icon"> 
                 
             </div>
             <div class="container" style="width:250px; height:200px; position: absolute; left: 3%; bottom: 400px;">
