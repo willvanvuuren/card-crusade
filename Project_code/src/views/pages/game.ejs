@@ -180,23 +180,33 @@
                         <div id="P1Field" class="col-sm border">
                             <p>P1 Card</p>
                             <p id='deck1Cards'>Cards Left: </p>
+                            <div id="P1FieldCard"></div>
+
     
                         </div>
                         <div id="TieField" class="col-sm border">
                             <p>Tie Pile</p>
+                            <div id="TieFieldCard"></div>
                         </div>
                         <div id="P2Field" class="col-sm border">
                             <p>P2 Card</p>
                             <p id='deck2Cards'>Cards Left:</p>
+                            <div id="P2FieldCard" ></div>
+
                         </div>
     
                     </div>
     
                     <div class="row gx-5">
+                        
                         <div class="col-sm" id="Deck1">
+                            <p>Player 1 Deck</p>
+                            <div id ="Deck1CardHolder"></div>
                         </div>
-    
+                        
                         <div class="col-sm" id="Deck2">
+                            <p>Player 2 Deck</p>
+                            <div id ="Deck2CardHolder"></div>
     
                         </div>
                     </div>
@@ -220,8 +230,8 @@
                 //selects the id for card2 element
                 var card2 = document.getElementById('card2');
                 //used to store the html location of Deck 1 & Deck 2
-                var deck1Pile = document.getElementById("Deck1");
-                var deck2Pile = document.getElementById("Deck2");
+                var deck1Pile = document.getElementById("Deck1CardHolder");
+                var deck2Pile = document.getElementById("Deck2CardHolder");
                 //used to store the card ids for the cards in a players deck for access, reinitialized
                 var deck1Ids = [];
                 var deck2Ids = [];
@@ -272,6 +282,7 @@
                     //Reset Game Score and WhoWonFlag
                     P1Score = 0;
                     P2Score = 0;
+                    round =0;
                     document.getElementById('rounds').innerText = "Round Number: ";
                     whoWonLastRound = -1;
                     P1CardCountHTML.innerText = "Cards Left: " + deck1.length;
@@ -356,10 +367,10 @@
                         deckToField(P1CardHTML, P2CardHTML, P1CardID, P2CardID);
                         //use this to score the cards and move to deck
                         score(P1CardID, P2CardID);
-                        P1CardHTML.style.position = 'absolute';
-                        P1CardHTML.style.position = 'inline';
-                        P2CardHTML.style.position = 'absolute';
-                        P2CardHTML.style.position = 'inline';
+                        // P1CardHTML.style.position = 'absolute';
+                        P1CardHTML.style.position = 'inline-block';
+                        // P2CardHTML.style.position = 'absolute';
+                        P2CardHTML.style.position = 'inline-block';
                         //removes first id of cards from the array
                         deck1Ids = deck1Ids.slice(1);
                         deck2Ids = deck2Ids.slice(1);
@@ -462,8 +473,8 @@
                     console.log(deck2Play.length);
                 }
                 function deckToField(card1, card2, card1Id, card2Id) {
-                    let field1 = document.getElementById("P1Field");
-                    let field2 = document.getElementById("P2Field");
+                    let field1 = document.getElementById("P1FieldCard");
+                    let field2 = document.getElementById("P2FieldCard");
                     field1.appendChild(card1);
                     field2.appendChild(card2);
                     // Animation Code Disabled For Functionality
