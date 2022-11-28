@@ -81,8 +81,8 @@ app.post('/register', async (req, res) => {
       throw new Error('This username is already taken');
     }
     else {
-      var query = 'INSERT INTO users (username, email, password, wins, losses) VALUES ($1, $2, $3, $4, $5);';
-      db.any(query, [req.body.username, req.body.email, hash, 0, 0])
+      var query = 'INSERT INTO users (username, email, password, wins, losses, icon) VALUES ($1, $2, $3, $4, $5, $6);';
+      db.any(query, [req.body.username, req.body.email, hash, 0, 0, "https://iili.io/H9Mvhml.md.png"])
       .then(function (rows) {
           res.redirect('/login');
       }
@@ -151,10 +151,21 @@ app.get('/home', (req,res) => {
 });
 
 app.get("/game", (req, res) => {
-  //req.session.destroy();
-  //add Logged out Successfully message 
   res.render("pages/game");
+  
+  
 }); 
+
+app.post('/game_icon', (req, res)=>{
+  var query = 'SELECT icon FROM users WHERE username = $1 RETURNING *;';
+  db.any(query, [user.username])
+    .then((data) =>{
+      console.log(data);
+      user.icon = data;
+      res.redirect('/game');
+    })
+  
+})
 
 
 app.get('/profile', async(req, res) =>{
@@ -235,7 +246,7 @@ app.get('/profile', async(req, res) =>{
     RETURNING *`;
     db.any(query, [req.body.selectpicker, user.username])
       .then(()=>{
-        user.icon = req.body.selectpicker;
+        res.session.user.icon = req.body.selectpicker;
         res.redirect('/profile');
     })
       .catch( () =>{
