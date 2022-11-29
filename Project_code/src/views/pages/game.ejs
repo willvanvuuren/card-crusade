@@ -318,8 +318,11 @@
                         let newCard1ValueId = "1PCardValue" + i;
                         let newCard2ValueId = "2PCardValue" + i;
                         //setting the HTML of newCard 1 and 2 ,specifically controlling for card value and card value id 
-                        newCard1.innerHTML = "<div class='col-sm' id='card1' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player1' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card1Title'>Card 1</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='" + newCard1ValueId + "' style='width:10px;left:50%;text-align:center;'>" + card1Value + "</p> </div> </div></div></div>";
-                        newCard2.innerHTML = "<div class='col-sm' id='card2' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='" + newCard2ValueId + "' style='width:10px;left:50%;text-align:center;'>" + card2Value + "</p> </div> </div></div></div>";
+                        newCard1.innerHTML = "<div class='col-sm' id='card1'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player1' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card1Title'>Card 1</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='" + newCard1ValueId + "' style='width:10px;left:50%;text-align:center;'>" + card1Value + "</p> </div> </div></div></div>";
+                        newCard2.innerHTML = "<div class='col-sm' id='card2' ><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='" + newCard2ValueId + "' style='width:10px;left:50%;text-align:center;'>" + card2Value + "</p> </div> </div></div></div>";
+
+                        newCard1.style.display="none";
+                        newCard2.style.display="none";
                         deck1Pile.appendChild(newCard1);
                         deck1Ids.push(newCard1.id);
                         deck2Pile.appendChild(newCard2);
@@ -369,8 +372,10 @@
                         score(P1CardID, P2CardID);
                         // P1CardHTML.style.position = 'absolute';
                         P1CardHTML.style.position = 'inline-block';
+                        P1CardHTML.style.display = 'inline-block';
                         // P2CardHTML.style.position = 'absolute';
                         P2CardHTML.style.position = 'inline-block';
+                        P2CardHTML.style.display = 'inline-block';
                         //removes first id of cards from the array
                         deck1Ids = deck1Ids.slice(1);
                         deck2Ids = deck2Ids.slice(1);
