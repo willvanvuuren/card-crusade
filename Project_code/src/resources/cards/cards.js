@@ -1,3 +1,6 @@
+$(document).on("click", ".flip-container", function () {
+	$(this).toggleClass('hover');
+});
 // This value is used to keep track of the movement of the cards
 var index = 0;
 // zIndex Value to keep track 

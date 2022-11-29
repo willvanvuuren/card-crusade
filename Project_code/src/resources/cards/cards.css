@@ -1,23 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
-
-.flip-box {
-  background-color: transparent;
-  width: 150px;
-  height: 250px;
-  border: 1px solid #f1f1f1;
-  perspective: 1000px;
-}
-#btnControl {
-    display: none;
-}
-
-#btnControl:checked + label > img {
-    width: 70px;
-    height: 74px;
-}
-
 #cardContainer1{
   background-color:greenyellow;
   width: 150px;
@@ -40,7 +23,39 @@ body {
   position:inline;
 }
 
+#Deck1{
+  position:absolute;
+  left:20px;
+  bottom:10px;
+  height:270px;
+  width:180px;
+  background:gray;
 
+}
+#Deck2{
+  position:absolute;
+  right:20px;
+  bottom:10px;
+  height:270px;
+  width:180px;
+  background: greenyellow;
+}
+
+#deck1Cards{
+position:relative;
+}
+
+#deck2Cards{
+text-orientation: sideways;
+}
+
+.flip-box {
+  background-color: transparent;
+  width: 150px;
+  height: 250px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+}
 
 .flip-box-inner {
   position: relative;
@@ -74,26 +89,3 @@ body {
   transform: rotateY(180deg);
 }
 
-#Deck1{
-	position:absolute;
-	left:20px;
-	bottom:10px;
-	height:270px;
-	width:180px;
-	background:gray;
-
-}
-#Deck2{
-	position:absolute;
-	right:20px;
-	bottom:10px;
-	height:270px;
-	width:180px;
-	background: greenyellow;
-}
-#deck1Cards{
-position:relative;
-}
-#deck2Cards{
-text-orientation: sideways;
-}
