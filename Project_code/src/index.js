@@ -137,6 +137,13 @@ const auth = (req, res, next) => {
   next();
 };
 
+/* app.use(function(req, res, next) {
+  res.locals.icon = req.session.icon;
+  res.locals.username = req.session.username;
+  next();
+}); */
+
+
 app.get('/', (req,res) => {
   res.render("pages/login");
 });
@@ -151,21 +158,13 @@ app.get('/home', (req,res) => {
 });
 
 app.get("/game", (req, res) => {
-  res.render("pages/game");
+  
+  res.render("pages/game")
   
   
 }); 
 
-app.post('/game_icon', (req, res)=>{
-  var query = 'SELECT icon FROM users WHERE username = $1 RETURNING *;';
-  db.any(query, [user.username])
-    .then((data) =>{
-      console.log(data);
-      user.icon = data;
-      res.redirect('/game');
-    })
-  
-})
+
 
 
 app.get('/profile', async(req, res) =>{
@@ -242,17 +241,19 @@ app.get('/profile', async(req, res) =>{
 
     var query = `UPDATE users          
     SET icon = $1
-    WHERE users.username = $2
-    RETURNING *`;
+    WHERE username = $2
+    RETURNING icon`;
     db.any(query, [req.body.selectpicker, user.username])
       .then(()=>{
-        res.session.user.icon = req.body.selectpicker;
+        //user.icon = `${req.body.selectpicker}`;
+        
         res.redirect('/profile');
     })
       .catch( () =>{
       //add error message
       res.redirect('/profile');
       console.log("post profile error");
+      
     });
 
 

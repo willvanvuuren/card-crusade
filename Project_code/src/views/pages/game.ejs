@@ -210,7 +210,7 @@
 
         </head>
 
-        <body>
+        <body onload="loadComp()" >
             <!-- The Modal -->
             <div id="myModal" class="modal">
                 <div class="modal-dialog modal-lg">
@@ -269,12 +269,14 @@
                 <p id="winner"></p>
             </div>
             </div>
-
-            <div id="TieField" class="container"
-                style="width: 250px; height: 350px; right: 50%; border-color: #d1000a; background-color: #e80915; color: white;">
+            <div style="position:fixed; left:0; right: 0;">
+                <div id="TieField" class="container"
+                style=" position:fixed; left:0; right: 0; width: 250px; height: 350px;  border-color: #d1000a; background-color: #e80915; color: white;">
                 <p>Tie Pile</p>
-                <div style="position: absolute; bottom: 25%; right: 57.5%;"><button id="but" style="width: 300px; height:100px" class="fill" onclick="playCard()">Play Card</button></div>
+                </div>
             </div>
+            <div ><button id="but" style="width: 300px; height:100px; position:absolute; top: 75%; left:620px;" class="fill" onclick="playCard()">Play Card</button></div>
+            
             
                 
             
@@ -298,18 +300,18 @@
                 </div>
             </div>
             <!--Icon containers-->
-            <div class="container" style="width:250px; height:200px; position: absolute; right: 3%; bottom: 400px;">
-               <img style="width:200px; height:200px;" src=<%= user.icon %> alt="users icon"> 
+            <div id="userIcon1"  class="container" style="width:250px; height:200px; position: absolute; right: 3%; bottom: 400px;">
+              
                 
             </div>
-            <div class="container" style="width:250px; height:200px; position: absolute; left: 3%; bottom: 400px;">
+            <div id="userIcon" class="container" style="width:250px; height:200px; position: absolute; left: 3%; bottom: 400px;">
 
             </div>
              <!--User name containers-->
             <div class="container" style="width:200px; height:40px; position: absolute; right: 5%; bottom: 300px; background-color: #ffcb51; font-weight: 600; font-size:large; color: white; text-align: center; ">
-                <%= user.username %>
+                <%= username %>
             </div>
-            <div class="container" style="width:200px; height:40px; position: absolute; left: 5%; bottom: 300px; background-color: #ffcb51;">
+            <div id="compTitle" class="container" style="width:200px; height:40px; position: absolute; left: 5%; bottom: 300px; background-color: #ffcb51;">
 
             </div>
             
@@ -321,6 +323,58 @@
             $(document).ready(function () {
                 $('#myModal').modal('toggle');
             })
+            function loadComp(){
+                var iconBox = document.getElementById('userIcon');
+                var uiconBox = document.getElementById('userIcon1');
+                var icon = document.createElement('img');
+                var uicon = document.createElement('img');
+                //'width:250px; height:200px; position: absolute; left: 3%; bottom: 400px;'
+                icon.style.width = '200px';
+                icon.style.height = '200px';
+                uicon.style.width = '200px';
+                uicon.style.height = '200px';
+                var nameCont = document.getElementById('compTitle');
+                //width:200px; height:40px; position: absolute; right: 5%; bottom: 300px; background-color: #ffcb51; font-weight: 600; font-size:large; color: white; text-align: center;
+                nameCont.style.width = '200px';
+                nameCont.style.height = '40px';
+                nameCont.style.fontWeight = '600';
+                nameCont.style.color = 'white';
+                nameCont.style.fontSize = 'large';
+                nameCont.style.textAlign = 'center';
+                
+
+                var randomChoice = Math.floor(Math.random() * 4);
+                if(randomChoice == 0){
+                    //marlene
+                    icon.src = 'https://iili.io/H9MvwI2.md.png';
+                    nameCont.innerText = "Sourcer Marlene";
+
+
+
+                }
+                else if(randomChoice == 1){
+                    //knight
+                    icon.src = 'https://iili.io/H9Mvhml.md.png';
+                    nameCont.innerText = "Defender Night";
+
+                }
+                else if(randomChoice == 2){
+                    //King
+                    icon.src = 'https://iili.io/H9MvNXS.md.png';
+                    nameCont.innerText = "Royal McKath";
+
+                }
+                else if(randomChoice == 3){
+                    //
+                    icon.src = 'https://iili.io/H9MvXe4.md.png';
+                    nameCont.innerText = "Sharp Shooter";
+
+                }
+                iconBox.appendChild(icon);
+                uiconBox.appendChild(uicon);
+
+            }
+        
         </script>
         <script>
             // This value is used to keep track of the movement of the cards
