@@ -1,7 +1,6 @@
 $(document).on("click", ".flip-container", function () {
 	$(this).toggleClass('hover');
 });
-
 // This value is used to keep track of the movement of the cards
 var index = 0;
 // zIndex Value to keep track 
@@ -121,8 +120,8 @@ function startGame(){
 	deck2Pile.innerHTML="";
 	document.getElementById("TieField").innerHTML="";
 	//untested remove feature above
-	document.getElementById("P1Field").innerHTML="<p>P1 Card</p><p id='deck1Cards'>Cards Left: </p><div id ='P1FieldCardHolder'></div>";
-	document.getElementById("P2Field").innerHTML="<p>P2 Card</p><p id='deck2Cards'>Cards Left: </p><div id ='P2FieldCardHolder'></div>";
+	document.getElementById("P1Field").innerHTML="<p>P1 Card</p><p id='deck1Cards'>Cards Left:"+(deck1Play.length)+" </p><div id ='P1FieldCardHolder'></div>";
+	document.getElementById("P2Field").innerHTML="<p>P2 Card</p><p id='deck2Cards'>Cards Left:"+(deck2Play.length)+" </p><div id ='P2FieldCardHolder'></div>";
 	document.getElementById("P1Score").innerText = 0;
 	document.getElementById("P2Score").innerText = 0;
 	for(let i =0;i<deck1Play.length;i++){
@@ -177,7 +176,7 @@ function startGame(){
 function playCard(){
 	// document.getElementById("P1Field").innerHTML="<p>P1 Card</p><p id='deck1Cards'>Cards Left: </p>";
 	// document.getElementById("P2Field").innerHTML="<p>P2 Card</p><p id='deck2Cards'>Cards Left: </p>";
-
+	
 	//check for game end condition
 	P1CardCountHTML.innerText="Cards Left: "+(deck1Play.length-1);
 	P2CardCountHTML.innerText="Cards Left: "+(deck2Play.length-1);
@@ -187,6 +186,7 @@ function playCard(){
 		let P2Score = document.getElementById("P2Score").innerText;
 		P1CardCountHTML.innerText="Cards Left: "+(deck1Play.length);
 		P2CardCountHTML.innerText="Cards Left: "+(deck2Play.length);
+
 		
 		if(P1Score>P2Score){
 			document.getElementById('winner').innerText = "P1 wins the game!";
@@ -200,7 +200,7 @@ function playCard(){
 
 	//handles the case where game does not end
 	else{
-
+			
 			shuffleDeck(deck1Play);
 			shuffleDeck(deck2Play);
 			//select the first element of both player decks

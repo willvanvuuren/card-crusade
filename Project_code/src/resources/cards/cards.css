@@ -30,7 +30,7 @@ body {
   height:270px;
   width:180px;
   background:gray;
-  z-index: 1000;
+
 
 }
 #Deck2{
@@ -43,11 +43,26 @@ body {
 }
 
 #deck1Cards{
-position:relative;
+  position:absolute;
+  left:20px;
+  bottom:0px;
+  height:320px;
+  width:180px;
+  z-index: 1000;
+  background:black;
+  color:red;
+
 }
 
 #deck2Cards{
-text-orientation: sideways;
+position: absolute;
+  right:20px;
+  bottom:0px;
+  height:320px;
+  width:180px;
+  z-index: 1000;
+  background:black;
+  color:red;
 }
 
 
