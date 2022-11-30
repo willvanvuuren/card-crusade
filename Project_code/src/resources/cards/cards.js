@@ -189,9 +189,11 @@ function playCard(){
 
 		
 		if(P1Score>P2Score){
+
 			document.getElementById('winner').innerText = "P1 wins the game!";
 		}else if(P2Score>P1Score){
 			document.getElementById('winner').innerText = "P2 wins the game!";
+
 		}else{
 			document.getElementById('winner').innerText = "It's a final tie!";
 		}
@@ -364,6 +366,7 @@ function score(card1Id,card2Id){
 	//Tie Conditions
 	else if(card1Value===card2Value){
 		whoWonLastRound=0;
+
 		document.getElementById('winner').innerText = "It's a tie!";
 		
 		TieField.appendChild(card1html);
