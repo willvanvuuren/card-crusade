@@ -63,6 +63,8 @@ var whoWonLastRound = -1;
 // var html1 = "<div class='col-sm' id='card1' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Card1' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
 // var html2 = "<div class='col-sm' id='card2' ;'><div class='flip-box'> <div class='flip-box-inner'> <div class='flip-box-front'> <img alt='Player2' style='width:150px;height:250px'> </div> <div class='flip-box-back'> <h2 id= 'Card2Title'>Card 2</h2> <p>This is the value of the card</p> <p class='p-3 border bg-dark' id='Card2Value' style='width:10px;left:50%;text-align:center;'>2</p> </div> </div></div></div>";
 
+var lastPlayedNonTieId =[];
+var lastPlayedNonTieValue =[];
 
 // Helper function to shuffle decks,fisher-yates algorithm
 
@@ -118,8 +120,10 @@ function startGame(){
 	deck2Pile.innerHTML="";
 	document.getElementById("TieField").innerHTML="";
 	//untested remove feature above
-
-
+	document.getElementById("P1Field").innerHTML="<p>P1 Card</p><p id='deck1Cards'>Cards Left: </p>";
+	document.getElementById("P2Field").innerHTML="<p>P2 Card</p><p id='deck2Cards'>Cards Left: </p>";
+	document.getElementById("P1Score").innerText = 0;
+	document.getElementById("P2Score").innerText = 0;
 	for(let i =0;i<deck1Play.length;i++){
 
 		//create new card element
@@ -176,7 +180,8 @@ function playCard(){
 	//check for game end condition
 	P1CardCountHTML.innerText="Cards Left: "+(deck1Play.length-1);
 	P2CardCountHTML.innerText="Cards Left: "+(deck2Play.length-1);
-	if(deck1Play.length===0 ||deck2Play.length===0 ){
+
+	if(deck1Play.length===0 ||deck2Play.length===0 ||round >=50){
 		let P1Score = document.getElementById("P1Score").innerText;
 		let P2Score = document.getElementById("P2Score").innerText;
 		P1CardCountHTML.innerText="Cards Left: "+(deck1Play.length);
@@ -195,7 +200,8 @@ function playCard(){
 	//handles the case where game does not end
 	else{
 
-		
+			shuffleDeck(deck1Play);
+			shuffleDeck(deck2Play);
 			//select the first element of both player decks
 
 			let P1CardID = deck1Ids[0];
@@ -206,9 +212,19 @@ function playCard(){
 			let P1CardHTML = document.getElementById(P1CardID);
 			let P2CardHTML = document.getElementById(P2CardID);
 
-			console.log(P1CardID);
-			console.log(P2CardID);
+			if(whoWonLastRound!=0 && round >0){
+				let Player1Field = document.getElementById("P1Field");
+				console.log(Player1Field.lastChild);
+				let Player2Field = document.getElementById("P2Field");
+				console.log(Player2Field.lastChild);
+			}
+			
 
+			// P1CardHTML.style.position = 'absolute';
+			P1CardHTML.style.display = 'inline';
+
+			// P2CardHTML.style.position = 'absolute';
+			P2CardHTML.style.position = 'inline';
 			//card to move cards from deck into play field
 			deckToField(P1CardHTML,P2CardHTML,P1CardID,P2CardID);
 
@@ -217,11 +233,7 @@ function playCard(){
 			//use this to score the cards and move to deck
 			score(P1CardID,P2CardID);
 
-			// P1CardHTML.style.position = 'absolute';
-			P1CardHTML.style.display = 'inline';
-
-			// P2CardHTML.style.position = 'absolute';
-			P2CardHTML.style.position = 'inline';
+			
 
 			//removes first id of cards from the array
 			deck1Ids=deck1Ids.slice(1);
@@ -231,10 +243,11 @@ function playCard(){
 			deck1Play=deck1Play.slice(1);
 			deck2Play=deck2Play.slice(1);
 			round++;
-			console.log(deck1Play);
-			console.log(deck2Play);
-			console.log(TiePileValues)
-			
+			console.log("Deck1: "+deck1Play);
+			console.log("Deck2: "+deck2Play);
+			console.log("TieDeck: "+TiePileValues)
+			console.log("Round #: "+round);
+
 			}
 }
 
@@ -304,6 +317,10 @@ function score(card1Id,card2Id){
 		whoWonLastRound=1;
 		deck1Play.push(card1Value,card2Value);
 		deck1Ids.push(card1Id,card2Id);
+		$("#"+card1id).appendTo("#Deck1");
+		$("#"+card2id).appendTo("#Deck2");
+		lastPlayedNonTieId.push(card1Id,card2Id);
+		lastPlayedNonTieValue.push(card1Value,card2Value);
 		if(TiePile.length >0){
 	
 			fieldToNext();
@@ -320,6 +337,10 @@ function score(card1Id,card2Id){
 		whoWonLastRound=2;
 		deck2Play.push(card1Value,card2Value);
 		deck2Ids.push(card1Id,card2Id);
+		$("#"+card1id).appendTo(deck2Pile);
+		$("#"+card2id).appendTo(deck2Pile);
+		lastPlayedNonTieId.push(card1Id,card2Id);
+		lastPlayedNonTieValue.push(card1Value,card2Value);
 		if(TiePile.length >0){
 	
 			fieldToNext(TiePile,TiePileValues);
@@ -329,6 +350,7 @@ function score(card1Id,card2Id){
 	}
 	//Tie Conditions
 	else if(card1Value===card2Value){
+		whoWonLastRound=0;
 		document.getElementById('winner').innerText = "It's a tie!";
 		
 		TieField.appendChild(card1html);
@@ -338,7 +360,7 @@ function score(card1Id,card2Id){
 		TiePileValues.push(card1Value,card2Value);
 		
 	}
-	
+	console.log("P1Score: "+ card1Value+" v. P2Score: "+card2Value);
 	
 	
 }
