@@ -30,6 +30,7 @@ body {
   height:270px;
   width:180px;
   background:gray;
+  z-index: 1000;
 
 }
 #Deck2{

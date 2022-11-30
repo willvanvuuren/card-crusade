@@ -143,8 +143,8 @@ function startGame(){
 		let newCard2ValueId="2PCardValue"+i;
 
 		//setting the HTML of newCard 1 and 2 ,specifically controlling for card value and card value id 
-		newCard1.innerHTML= "<div class='col-sm' id='cardContainer1' ><div class = 'row'> <h6 > Player 1 </h6> </div> <div class ='row'> <h2 id= 'Card1Title'>Card 1</h2> </div> <div class ='row'> <p>This is the value of the card</p> <p class='p-3 border bg-secondary' id='"+newCard1ValueId+"' style='width:10px;left:50%;text-align:center;margin:auto;'>"+card1Value+"</p> </div> </div> ";
-		newCard2.innerHTML="<div class='col-sm' id='cardContainer2'><div class = 'row'> <h6 > Player 2 </h6> </div> <div class ='row'> <h2 id= 'Card1Title'>Card 1</h2> </div> <div class ='row'> <p>This is the value of the card</p> <p class='p-3 border bg-secondary' id='"+newCard2ValueId+"' style='width:10px;left:50%;text-align:center;margin:auto;'>"+card2Value+"</p> </div> </div> "
+		newCard1.innerHTML= "<div class='col-sm' id='cardContainer1' ><div class = 'row'> <h6 > Player 1 </h6> </div> <div class ='row'> <h2 id= 'Card1Title'>Card "+i+"</h2> </div> <div class ='row'> <p>This is the value of the card</p> <p class='p-3 border bg-secondary' id='"+newCard1ValueId+"' style='width:10px;left:50%;text-align:center;margin:auto;'>"+card1Value+"</p> </div> </div> ";
+		newCard2.innerHTML="<div class='col-sm' id='cardContainer2'><div class = 'row'> <h6 > Player 2 </h6> </div> <div class ='row'> <h2 id= 'Card2Title'>Card "+i+"</h2> </div> <div class ='row'> <p>This is the value of the card</p> <p class='p-3 border bg-secondary' id='"+newCard2ValueId+"' style='width:10px;left:50%;text-align:center;margin:auto;'>"+card2Value+"</p> </div> </div> "
 		//zindex added
 		card1zIndex++;
 		card2zIndex--;
