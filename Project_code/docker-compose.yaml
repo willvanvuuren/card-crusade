@@ -10,6 +10,7 @@ services:
       - ./src/init_data:/docker-entrypoint-initdb.d
   web:
     image: node:lts
+    domainname: "cardcrusadecu22"
     user: 'node'
     working_dir: /home/node/app
     env_file: .env
@@ -21,6 +22,12 @@ services:
       - '3000:3000'
     volumes:
       - ./src/:/home/node/app
+      
     command: 'npm start'
 volumes:
-  card-crusade:
+  card-crusade: 
+    driver: azure_file
+    driver_opts:
+        share_name: cardcrusadefileshare
+        storage_account_name: cardcrusadestorage
+

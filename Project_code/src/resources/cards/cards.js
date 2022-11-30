@@ -145,16 +145,15 @@ function startGame(){
 		card1zIndex++;
 		card2zIndex--;
 
-		newCard1.style.position='absolute';
+		newCard1.style.position='inline';
 		newCard1.style.zIndex=card1zIndex;
 		// newCard1.style.display="none";
 
 		newCard2.style.zIndex=card2zIndex;
-		newCard2.style.position='absolute';
+		newCard2.style.position='inline';
 		// newCard2.style.display="none"
 
-		console.log("Card 1 Z-Index: "+newCard1.style.zIndex);
-		console.log("Card 2 Z-Index: "+newCard2.style.zIndex);
+		
 		deck1Pile.appendChild(newCard1);
 
 		deck1Ids.push(newCard1.id);
@@ -171,8 +170,8 @@ function startGame(){
 }
 
 function playCard(){
-	document.getElementById("P1Field").innerHTML="<p>P1 Card</p><p id='deck1Cards'>Cards Left: </p>";
-	document.getElementById("P2Field").innerHTML="<p>P2 Card</p><p id='deck2Cards'>Cards Left: </p>";
+	// document.getElementById("P1Field").innerHTML="<p>P1 Card</p><p id='deck1Cards'>Cards Left: </p>";
+	// document.getElementById("P2Field").innerHTML="<p>P2 Card</p><p id='deck2Cards'>Cards Left: </p>";
 
 	//check for game end condition
 	P1CardCountHTML.innerText="Cards Left: "+(deck1Play.length-1);
@@ -182,7 +181,7 @@ function playCard(){
 		let P2Score = document.getElementById("P2Score").innerText;
 		P1CardCountHTML.innerText="Cards Left: "+(deck1Play.length);
 		P2CardCountHTML.innerText="Cards Left: "+(deck2Play.length);
-		console.log(P1Score+" "+P2Score)
+		
 		if(P1Score>P2Score){
 			document.getElementById('winner').innerText = "P1 wins the game!";
 		}else if(P2Score>P1Score){
@@ -207,11 +206,13 @@ function playCard(){
 			let P1CardHTML = document.getElementById(P1CardID);
 			let P2CardHTML = document.getElementById(P2CardID);
 
+			console.log(P1CardID);
+			console.log(P2CardID);
+
 			//card to move cards from deck into play field
 			deckToField(P1CardHTML,P2CardHTML,P1CardID,P2CardID);
 
-			console.log(P1CardID);
-			console.log(P2CardID);
+			
 
 			//use this to score the cards and move to deck
 			score(P1CardID,P2CardID);
@@ -232,6 +233,7 @@ function playCard(){
 			round++;
 			console.log(deck1Play);
 			console.log(deck2Play);
+			console.log(TiePileValues)
 			
 			}
 }
@@ -304,7 +306,7 @@ function score(card1Id,card2Id){
 		deck1Ids.push(card1Id,card2Id);
 		if(TiePile.length >0){
 	
-			fieldToNext(TiePile,TiePileValues);
+			fieldToNext();
 	
 		}
 		
@@ -336,8 +338,7 @@ function score(card1Id,card2Id){
 		TiePileValues.push(card1Value,card2Value);
 		
 	}
-	console.log(deck1Play.length);
-	console.log(deck2Play.length);
+	
 	
 	
 }
@@ -390,29 +391,30 @@ function deckToField(card1,card2,card1Id,card2Id){
 	
 
 }
+
 //function that handles transition between draw rounds
-function fieldToNext(idList,valueList){
-		while(idList.length!=0){
-			let card1Temp = document.getElementById(idList[0]);
-			let card2Temp = document.getElementById(idList[1]);
-			let card1Value = valueList[0];
-			let card2Value = valueList[1];
+function fieldToNext(){
+		while(TiePile.length!=0){
+			let card1Temp = document.getElementById(TiePile[0]);
+			let card2Temp = document.getElementById(TiePile[1]);
+			let card1Value = TiePileValues[0];
+			let card2Value = TiePileValues[1];
 			if(whoWonLastRound===1){
 				deck1Pile.appendChild(card1Temp);
 				deck1Pile.appendChild(card2Temp);
 				deck1Play.push(card1Value,card2Value);
-				deck1Ids.push(idList[0],idList[1]);
+				deck1Ids.push(TiePile[0],TiePile[1]);
 
 			} else if(whoWonLastRound===2){
 				deck2Pile.appendChild(card1Temp);
 				deck2Pile.appendChild(card2Temp);
 				deck2Play.push(card1Value,card2Value);
-				deck2Ids.push(idList[0],idList[1]);
+				deck2Ids.push(TiePile[0],TiePile[1]);
 		}
-			idList=idList.slice(1);
-			idList=idList.slice(1);
-			valueList=valueList.slice(1); 
-			valueList=valueList.slice(1); 
+			TiePile=TiePile.slice(1);
+			TiePile=TiePile.slice(1);
+			TiePileValues=TiePileValues.slice(1); 
+			TiePileValues=TiePileValues.slice(1); 
 	}
 }
 
