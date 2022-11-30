@@ -212,11 +212,21 @@ function playCard(){
 			let P1CardHTML = document.getElementById(P1CardID);
 			let P2CardHTML = document.getElementById(P2CardID);
 
-			if(whoWonLastRound!=0 && round >0){
-				let Player1Field = document.getElementById("P1Field");
-				console.log(Player1Field.lastChild);
-				let Player2Field = document.getElementById("P2Field");
-				console.log(Player2Field.lastChild);
+			console.log("Last Played ID's: ");
+			console.log(lastPlayedNonTieId);
+			if(whoWonLastRound===1 && round >0){
+				
+
+				$("#"+lastPlayedNonTieId[0]).appendTo("#Deck1");
+				$("#"+lastPlayedNonTieId[1]).appendTo("#Deck1");
+				lastPlayedNonTieId=lastPlayedNonTieId.slice(1);
+				lastPlayedNonTieId=lastPlayedNonTieId.slice(1);
+				
+			} else if(whoWonLastRound===2 && round>0){
+				$("#"+lastPlayedNonTieId[0]).appendTo("#Deck2");
+				$("#"+lastPlayedNonTieId[1]).appendTo("#Deck2");
+				lastPlayedNonTieId=lastPlayedNonTieId.slice(1);
+				lastPlayedNonTieId=lastPlayedNonTieId.slice(1);
 			}
 			
 
@@ -321,6 +331,7 @@ function score(card1Id,card2Id){
 		// $("#"+card2Id).appendTo("#Deck2");
 		lastPlayedNonTieId.push(card1Id,card2Id);
 		lastPlayedNonTieValue.push(card1Value,card2Value);
+		console.log("added: "+card1Id+" and "+card2Id+" to last pile");
 		if(TiePile.length >0){
 	
 			fieldToNext();
@@ -341,6 +352,7 @@ function score(card1Id,card2Id){
 		// $("#"+card2Id).appendTo(deck2Pile);
 		lastPlayedNonTieId.push(card1Id,card2Id);
 		lastPlayedNonTieValue.push(card1Value,card2Value);
+		console.log("added: "+card1Id+" and "+card2Id+" to last pile");
 		if(TiePile.length >0){
 	
 			fieldToNext(TiePile,TiePileValues);
@@ -371,8 +383,8 @@ function deckToField(card1,card2,card1Id,card2Id){
 	let field1 =document.getElementById("P1FieldCardHolder");
 	let field2 =document.getElementById("P2FieldCardHolder");
 
-	$("#"+card1Id).appendTo("#P1Field");
-	$("#"+card2Id).appendTo("#P2Field");
+	$("#"+card1Id).appendTo("#P1FieldCardHolder");
+	$("#"+card2Id).appendTo("#P2FieldCardHolder");
 
 
 	
