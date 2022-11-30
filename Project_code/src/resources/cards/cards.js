@@ -120,8 +120,8 @@ function startGame(){
 	deck2Pile.innerHTML="";
 	document.getElementById("TieField").innerHTML="";
 	//untested remove feature above
-	document.getElementById("P1Field").innerHTML="<p>P1 Card</p><p id='deck1Cards'>Cards Left: </p>";
-	document.getElementById("P2Field").innerHTML="<p>P2 Card</p><p id='deck2Cards'>Cards Left: </p>";
+	document.getElementById("P1Field").innerHTML="<p>P1 Card</p><p id='deck1Cards'>Cards Left: </p><div id ='P1FieldCardHolder'></div>";
+	document.getElementById("P2Field").innerHTML="<p>P2 Card</p><p id='deck2Cards'>Cards Left: </p><div id ='P2FieldCardHolder'></div>";
 	document.getElementById("P1Score").innerText = 0;
 	document.getElementById("P2Score").innerText = 0;
 	for(let i =0;i<deck1Play.length;i++){
@@ -317,8 +317,8 @@ function score(card1Id,card2Id){
 		whoWonLastRound=1;
 		deck1Play.push(card1Value,card2Value);
 		deck1Ids.push(card1Id,card2Id);
-		$("#"+card1id).appendTo("#Deck1");
-		$("#"+card2id).appendTo("#Deck2");
+		// $("#"+card1Id).appendTo("#Deck1");
+		// $("#"+card2Id).appendTo("#Deck2");
 		lastPlayedNonTieId.push(card1Id,card2Id);
 		lastPlayedNonTieValue.push(card1Value,card2Value);
 		if(TiePile.length >0){
@@ -337,8 +337,8 @@ function score(card1Id,card2Id){
 		whoWonLastRound=2;
 		deck2Play.push(card1Value,card2Value);
 		deck2Ids.push(card1Id,card2Id);
-		$("#"+card1id).appendTo(deck2Pile);
-		$("#"+card2id).appendTo(deck2Pile);
+		// $("#"+card1Id).appendTo(deck2Pile);
+		// $("#"+card2Id).appendTo(deck2Pile);
 		lastPlayedNonTieId.push(card1Id,card2Id);
 		lastPlayedNonTieValue.push(card1Value,card2Value);
 		if(TiePile.length >0){
@@ -368,11 +368,11 @@ function score(card1Id,card2Id){
 function deckToField(card1,card2,card1Id,card2Id){
 	
 
-	let field1 =document.getElementById("P1Field");
-	let field2 =document.getElementById("P2Field");
+	let field1 =document.getElementById("P1FieldCardHolder");
+	let field2 =document.getElementById("P2FieldCardHolder");
 
-	field1.appendChild(card1);
-	field2.appendChild(card2);
+	$("#"+card1Id).appendTo("#P1Field");
+	$("#"+card2Id).appendTo("#P2Field");
 
 
 	
