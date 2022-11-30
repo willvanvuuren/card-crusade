@@ -1,67 +1,69 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
-
-.flip-box {
-  background-color: transparent;
+#cardContainer1{
+  background-color:greenyellow;
   width: 150px;
   height: 250px;
   border: 1px solid #f1f1f1;
+  border-radius: 10px;
   perspective: 1000px;
-}
-
-.flip-box-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
   text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
+  position:inline;
 }
 
-.flip-box:hover .flip-box-inner {
-  transform: rotateY(180deg);
-}
-
-.flip-box-front, .flip-box-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.flip-box-front {
-  background-color: #f1f1f1;
-  color: black;
-}
-
-.flip-box-back {
-  background-color: #d2d2d2;
-  color: white;
-  transform: rotateY(180deg);
+#cardContainer2{
+  background-color:indianred;
+  width: 150px;
+  height: 250px;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  perspective: 1000px;
+  text-align: center;
+  position:inline;
 }
 
 #Deck1{
-	position:fixed;
-	left:20px;
-	bottom:10px;
-	height:250px;
-	width:150px;
-	background:gray;
-	z-index: -52;
+  position:absolute;
+  left:20px;
+  bottom:10px;
+  height:270px;
+  width:180px;
+  background:gray;
+
+
 }
 #Deck2{
-	position:fixed;
-	right:20px;
-	bottom:10px;
-	height:250px;
-	width:150px;
-	background: greenyellow;
+  position:absolute;
+  right:20px;
+  bottom:10px;
+  height:270px;
+  width:180px;
+  background: greenyellow;
 }
+
 #deck1Cards{
-position:relative;
+  position:absolute;
+  left:20px;
+  bottom:0px;
+  height:320px;
+  width:180px;
+  z-index: 1000;
+  background:black;
+  color:red;
+
 }
+
 #deck2Cards{
-text-orientation: sideways;
+position: absolute;
+  right:20px;
+  bottom:0px;
+  height:320px;
+  width:180px;
+  z-index: 1000;
+  background:black;
+  color:red;
 }
+
+
+
