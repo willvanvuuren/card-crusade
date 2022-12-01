@@ -1,0 +1,69 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+#cardContainer1{
+  background-color:greenyellow;
+  width: 150px;
+  height: 250px;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  perspective: 1000px;
+  text-align: center;
+  position:inline;
+}
+
+#cardContainer2{
+  background-color:indianred;
+  width: 150px;
+  height: 250px;
+  border: 1px solid #f1f1f1;
+  border-radius: 10px;
+  perspective: 1000px;
+  text-align: center;
+  position:inline;
+}
+
+#Deck1{
+  position:absolute;
+  left:20px;
+  bottom:10px;
+  height:270px;
+  width:180px;
+  background:gray;
+
+
+}
+#Deck2{
+  position:absolute;
+  right:20px;
+  bottom:10px;
+  height:270px;
+  width:180px;
+  background: greenyellow;
+}
+
+#deck1Cards{
+  position:absolute;
+  left:20px;
+  bottom:0px;
+  height:320px;
+  width:180px;
+  z-index: 1000;
+  background:black;
+  color:red;
+
+}
+
+#deck2Cards{
+position: absolute;
+  right:20px;
+  bottom:0px;
+  height:320px;
+  width:180px;
+  z-index: 1000;
+  background:black;
+  color:red;
+}
+
+
+

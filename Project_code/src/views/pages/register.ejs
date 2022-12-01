@@ -1,24 +1,42 @@
+<<<<<<< HEAD
 <%- include ('../partials/header') %> 
+=======
+
+<%- include ('../partials/header') %><%- include ('../partials/navbarlogin') %>
+
+>>>>>>> 022ed7775b9e31bcf55545d46dc663865c33a95b
 
 <main>
     </br>
+    <div class="col-sm">
+      <% if (locals.message) { %>
+        <div
+          class="alert alert-<%- locals.error ? 'danger' : 'success' %>"
+          role="alert"
+        >
+          <%= message %>
+        </div>
+      <% } %>
+    </div>
     <div class="container">
         <h1>
             Register an account
         </h1>
     </br>
-      <form action="/register" method="POST">
+
+      <form name="register" action="/register" method="POST">
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" aria-describedby="email" name="email">
+            <input type="email" class="form-control" id="email" aria-describedby="email" name="email" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
           </div>
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" aria-describedby="username" name="username">
+            <input type="text" class="form-control" id="username" aria-describedby="username" name="username" required maxlength="15" minlength="3">
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" name="password">
+            <input type="password" class="form-control" id="password" name="password" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&;])[A-Za-z\d@$!%*?&;{8,}$">
+
             <small id="passwordHelp" class="form-text text-muted">Must contain at least 8 characters, one capital letter, one special character, and one number
             </small>
           </div>
