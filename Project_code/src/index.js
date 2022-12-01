@@ -61,12 +61,6 @@ app.use(
 
 user.username="Janek"; //need to set this at login, used to update username/password in profile
 
-// trying to set home page as default endpoint for first time visit, also renders home page. 
-app.get('/home', (req, res) => {
-  res.render(pages/home)
-});
-
-
 app.get('/login', (req,res) => {
   res.render("pages/login");
 });
