@@ -102,6 +102,8 @@ app.post('/register', async (req, res) => {
 
 app.post('/login', async (req,res) => {
   user.username=req.body.username;
+  console.log(user.username);
+  console.log(user.icon);
   const query = 'SELECT password FROM users WHERE username=$1;';
   db.any(query, [req.body.username])
       .then(async (data) => {
@@ -137,12 +139,7 @@ const auth = (req, res, next) => {
   next();
 };
 
-/* app.use(function(req, res, next) {
-  res.locals.icon = req.session.icon;
-  res.locals.username = req.session.username;
-  next();
-}); */
-
+app.use(auth);
 
 app.get('/', (req,res) => {
   res.render("pages/login");
@@ -158,7 +155,7 @@ app.get('/home', (req,res) => {
 });
 
 app.get("/game", (req, res) => {
-  
+  //username = user.username;
   res.render("pages/game")
   
   
@@ -245,7 +242,7 @@ app.get('/profile', async(req, res) =>{
     RETURNING icon`;
     db.any(query, [req.body.selectpicker, user.username])
       .then(()=>{
-        //user.icon = `${req.body.selectpicker}`;
+        user.icon = req.body.selectpicker;
         
         res.redirect('/profile');
     })
