@@ -25,9 +25,5 @@ services:
       
     command: 'npm start'
 volumes:
-  card-crusade: 
-    driver: azure_file
-    driver_opts:
-        share_name: cardcrusadefileshare
-        storage_account_name: cardcrusadestorage
+  
 
