@@ -109,6 +109,10 @@ function startGame(){
 	deck1Ids =[];
 	deck2Ids=[];
 
+	//deck id values
+	deck1IDValue ={};
+	deck2IDValue ={};
+
 	//refresh zIndex; not really necessary 
 	card1zIndex =0;
 	card2zIndex =0;
@@ -159,11 +163,17 @@ function startGame(){
 
 		
 		deck1Pile.appendChild(newCard1);
-
-		deck1Ids.push(newCard1.id);
+		deck1Ids.push([newCard1.id,newCard1ValueId]);
+		
 
 		deck2Pile.appendChild(newCard2);
-		deck2Ids.push(newCard2.id);
+		deck2Ids.push(newCard1.id);
+
+		//hotfix
+		deck1IDValue[newCard1.id]=newCard1ValueId;
+		deck2IDValue[newCard2.id]=newCard2ValueId;
+
+		console.log(deck1Ids);
 	}
 	//entry to new game
 	console.log("New Game Started");
@@ -318,10 +328,12 @@ function score(card1Id,card2Id){
 	let card2html =document.getElementById(card2Id);
 	let TieField =document.getElementById("TieField");
 
-	//retrieves first element of deck values for comparison
-	card1Value= deck1Play[0];
-	card2Value= deck2Play[0];
+	// //retrieves first element of deck values for comparison
+	// card1Value= deck1Play[0];
+	// card2Value= deck2Play[0];
 
+	card1Value= deck1IDValue[card1Id];
+	card2Value= deck2IDValue[card2Id];
 	//P1  conditions
 	if(card1Value>card2Value){
 		P1Score++;
@@ -435,8 +447,8 @@ function fieldToNext(){
 		while(TiePile.length!=0){
 			let card1Temp = document.getElementById(TiePile[0]);
 			let card2Temp = document.getElementById(TiePile[1]);
-			let card1Value = TiePileValues[0];
-			let card2Value = TiePileValues[1];
+			let card1Value = deck1IDValue[TiePile[0]];
+			let card2Value = deck1IDValue[TiePile[1]];
 			if(whoWonLastRound===1){
 				deck1Pile.appendChild(card1Temp);
 				deck1Pile.appendChild(card2Temp);
