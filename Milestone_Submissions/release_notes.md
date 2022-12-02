@@ -1,7 +1,6 @@
-### New Features
-* User Login and Registration page: Users can now register and login. Task [#4](https://github.com/willvanvuuren/card-crusade/issues/4)
-* 
-
-### Full Change log
-* The full list of commits can be found in the release notes for V1.1.0 
-* 
+### Features
+* User Login and Registration page: Users can now register and login. Task [#4](https://github.com/willvanvuuren/card-crusade/issues/4) Task [#2] (https://github.com/willvanvuuren/card-crusade/issues/2)
+* User Homepage: After users login they are directed to a homepage that details what the navigation bar buttons do and what you can do on each page. Task [#51] (https://github.com/willvanvuuren/card-crusade/issues/51)
+* User profile and settings page: Users can now view their account stats(Rank, wins, icon) and change their username and password Task [#19](https://github.com/willvanvuuren/card-crusade/issues/19) Task [#1](https://github.com/willvanvuuren/card-crusade/issues/1) Task [#20](https://github.com/willvanvuuren/card-crusade/issues/20) Task [#22](https://github.com/willvanvuuren/card-crusade/issues/22) Task [#21](https://github.com/willvanvuuren/card-crusade/issues/21) 
+* Game Board: Users are presented with the game instructions via modal. When the user selects the start game button the modal cloases and the players are dealt the cards. The user can click on the "play card" button to play a card and battle the opponent, which is a bot with a random character icon. If the user wins then a congrats modal appears. If the bot wins then a loser modal appears. If it ends in a tie then a tie modal appears. The user icons, name tags, scores, winner of the round, and decks are displayed on the game board. Task [#17](https://github.com/willvanvuuren/card-crusade/issues/17) Task [#16] (https://github.com/willvanvuuren/card-crusade/issues/16) Task [#14](https://github.com/willvanvuuren/card-crusade/issues/14) Task [#12] (https://github.com/willvanvuuren/card-crusade/issues/12) Task [#24](https://github.com/willvanvuuren/card-crusade/issues/24) Task [#25](https://github.com/willvanvuuren/card-crusade/issues/25) Task [#10](https://github.com/willvanvuuren/card-crusade/issues/10) Task [#23] (https://github.com/willvanvuuren/card-crusade/issues/23) Task [#11] (https://github.com/willvanvuuren/card-crusade/issues/11) Task [#15] (https://github.com/willvanvuuren/card-crusade/issues/15) Task [#13] (https://github.com/willvanvuuren/card-crusade/issues/13)
+* Logout: Users can select the logout on the navbar to log out. Task [#8](https://github.com/willvanvuuren/card-crusade/issues/8)
