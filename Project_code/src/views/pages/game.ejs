@@ -615,6 +615,9 @@
                 card1zIndex = 0;
                 card2zIndex = 0;
 
+                //hotfix
+                deckIdValues = {};
+                
 
                 //untested remove feature here
                 //remove lingering Children inside deck1Pile and deck2Pile
@@ -666,6 +669,8 @@
 
                     deck2Pile.appendChild(newCard2);
                     deck2Ids.push(newCard2.id);
+                    deckIdValues[newCard1.id]=document.getElementById(newCard1ValueId).innerText;
+                    deckIdValues[newCard2.id]=document.getElementById(newCard2ValueId).innerText;
                 }
                 //entry to new game
                 console.log("New Game Started");
@@ -828,8 +833,8 @@
                 let TieField = document.getElementById("TieField");
 
                 //retrieves first element of deck values for comparison
-                card1Value = deck1Play[0];
-                card2Value = deck2Play[0];
+                card1Value = deckIdValues[card1Id];
+                card2Value = deckIdValues[card2Id];
 
                 //P1  conditions
                 if (card1Value > card2Value) {
@@ -944,8 +949,8 @@
                 while (TiePile.length != 0) {
                     let card1Temp = document.getElementById(TiePile[0]);
                     let card2Temp = document.getElementById(TiePile[1]);
-                    let card1Value = TiePileValues[0];
-                    let card2Value = TiePileValues[1];
+                    let card1Value = deckIdValues[TiePile[0]];
+                    let card2Value = deckIdValues[TiePile[1]];
                     if (whoWonLastRound === 1) {
                         deck1Pile.appendChild(card1Temp);
                         deck1Pile.appendChild(card2Temp);
