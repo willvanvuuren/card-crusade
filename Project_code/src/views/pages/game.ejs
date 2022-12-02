@@ -517,8 +517,8 @@
 
 
             //global values for decks, decks should be shuffled
-            var deck1 = [1,1];
-            var deck2 = [1,2];
+            var deck1 = [1,2,3,4,5,6,7,8,9,10,11,12,13];
+            var deck2 = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 
             //global var to keep track of the ids for the cards in the tie pile
             var TiePile = [];
@@ -833,8 +833,8 @@
                 let TieField = document.getElementById("TieField");
 
                 //retrieves first element of deck values for comparison
-                card1Value = deckIdValues[card1Id];
-                card2Value = deckIdValues[card2Id];
+                card1Value = parseInt(deckIdValues[card1Id]);
+                card2Value = parseInt(deckIdValues[card2Id]);
 
                 //P1  conditions
                 if (card1Value > card2Value) {
@@ -869,7 +869,7 @@
                     // $("#"+card2Id).appendTo(deck2Pile);
                     lastPlayedNonTieId.push(card1Id, card2Id);
                     lastPlayedNonTieValue.push(card1Value, card2Value);
-                    console.log("added: " + card1Id + " and " + card2Id + " to last pile");
+                    
                     if (TiePile.length > 0) {
 
                         fieldToNext(TiePile, TiePileValues);
@@ -891,6 +891,7 @@
 
                 }
                 console.log("P1Score: " + card1Value + " v. P2Score: " + card2Value);
+                console.log( card1Value > card2Value);
 
 
             }
@@ -949,8 +950,8 @@
                 while (TiePile.length != 0) {
                     let card1Temp = document.getElementById(TiePile[0]);
                     let card2Temp = document.getElementById(TiePile[1]);
-                    let card1Value = deckIdValues[TiePile[0]];
-                    let card2Value = deckIdValues[TiePile[1]];
+                    let card1Value = parseInt(deckIdValues[TiePile[0]]);
+                    let card2Value = parseInt(deckIdValues[TiePile[1]]);
                     if (whoWonLastRound === 1) {
                         deck1Pile.appendChild(card1Temp);
                         deck1Pile.appendChild(card2Temp);
