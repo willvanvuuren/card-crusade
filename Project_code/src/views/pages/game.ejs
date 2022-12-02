@@ -517,8 +517,8 @@
 
 
             //global values for decks, decks should be shuffled
-            var deck1 = [1, 2, 3,4,5,6];
-            var deck2 = [1, 2, 3,4,5,6];
+            var deck1 = [1,1];
+            var deck2 = [1,2];
 
             //global var to keep track of the ids for the cards in the tie pile
             var TiePile = [];
@@ -688,7 +688,7 @@
                 P1CardCountHTML.innerText = "Cards Left: " + (deck1Play.length - 1);
                 P2CardCountHTML.innerText = "Cards Left: " + (deck2Play.length - 1);
 
-                if (deck1Play.length === 0 || deck2Play.length === 0 || round >= 50) {
+                if (deck1Ids.length === 0 || deck2Ids.length === 0 || round >= 50) {
                     let P1Score = document.getElementById("P1Score").innerText;
                     let P2Score = document.getElementById("P2Score").innerText;
                     P1CardCountHTML.innerText = "Cards Left: " + (deck1Play.length);
@@ -697,11 +697,11 @@
 
                     if (P1Score > P2Score) {
 
-                        document.getElementById('winner').innerText = `${opponentName} wins the game!`;
+                        document.getElementById('winner').innerText = "P1wins the game!";
                         var winnerModal = document.getElementById('loserModal');
                         winnerModal.style.display = 'block';
                     } else if (P2Score > P1Score) {
-                        document.getElementById('winner').innerText = `${user.username} wins the game!`;
+                        document.getElementById('winner').innerText = "P2 wins the game!";
                         var winnerModal = document.getElementById('myM');
                         winnerModal.style.display = 'block';
 
