@@ -1,11 +1,11 @@
 # Card-crusade
 # Team Aces, 17-02
 # Contributors: 
-Ashley Kastler     	    
-William Van Vuuren  
-Elizabeth Sorenson	   
-Daniel Hernandez	
-Jose Soto
+* Ashley Kastler     	    
+* William Van Vuuren  
+* Elizabeth Sorenson	   
+* Daniel Hernandez	
+* Jose Soto
 
 # Application Description 
 
