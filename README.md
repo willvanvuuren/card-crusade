@@ -6,6 +6,7 @@ William Van Vuuren
 Elizabeth Sorenson	   
 Daniel Hernandez	
 Jose Soto
+
 # Application Description 
 
 For card game enthusiasts who enjoy experiencing digital access to their favorite
